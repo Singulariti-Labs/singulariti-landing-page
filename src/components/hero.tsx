@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative w-full h-[110dvh] bg-white flex items-center justify-center overflow-hidden">
+    <section className="relative w-full h-[120dvh] bg-white flex items-center justify-center overflow-hidden">
       {/* ===== bottom-one ===== */}
       <div
         className="
