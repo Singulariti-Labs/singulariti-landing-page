@@ -1,4 +1,5 @@
 import React from "react";
+import listenIcon from "../assets/listen-icon.png";
 
 const HeroSection: React.FC = () => {
   return (
@@ -94,7 +95,7 @@ const HeroSection: React.FC = () => {
               </button>
               <button className="w-18 h-9 max-lg:w-12 max-lg:h-6 flex items-center justify-center rounded-2xl bg-black/50">
                 <img
-                  src="/src/assets/listen-icon.png"
+                  src={listenIcon}
                   alt="audio"
                   className="w-11 h-5 max-lg:w-7 max-lg:h-3" 
                 />
