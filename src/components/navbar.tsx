@@ -8,9 +8,7 @@ const Navbar: React.FC = () => {
   };
 
   const handleFeaturesClick = () => {
-    // Check if we're already on the home page
     if (window.location.pathname === "/") {
-      // Scroll to the FeaturesSection1 element
       const featuresSection = document.getElementById("section4");
       if (featuresSection) {
         featuresSection.scrollIntoView({ 
@@ -19,7 +17,6 @@ const Navbar: React.FC = () => {
         });
       }
     } else {
-      // Navigate to home page with hash to scroll to features
       window.location.href = "/#section4";
     }
   };
@@ -61,20 +58,14 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Right side */}
+          {/* Right side - Join Waitlist always visible */}
           <div className="flex items-center !gap-4">
             <button 
               onClick={handleJoinWaitlistClick}
-              className="hidden md:block bg-white/60 hover:bg-[#E2DFD0]/50 text-black border-1 text-sm md:text-base lg:text-2xl font-medium !px-4 !py-2 lg:!px-6 lg:!py-1.5 rounded-lg transition-colors duration-200"
+              className="bg-white/60 hover:bg-[#E2DFD0]/50 text-black border-1 text-xl md:text-xl lg:text-2xl font-medium !px-4 !py-2 lg:!px-6 lg:!py-1.5 rounded-lg transition-colors duration-200"
             >
               <span className="hidden lg:inline">Join Waitlist</span>
-              <span className="lg:hidden">Start</span>
-            </button>
-            
-            <button className="md:hidden !p-2 text-gray-800 hover:bg-gray-100 rounded-md transition-colors duration-200">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <span className="lg:hidden">Join waitlist</span>
             </button>
           </div>
         </div>
