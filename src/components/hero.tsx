@@ -75,7 +75,7 @@ const HeroSection: React.FC = () => {
           Singulariti
         </h1>
         <p className="mt-4 font-medium text-xl lg:text-[40px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-          Creating personal AI that truly cares, giving the superpower to do anything.
+          Creating personal AI that truly cares, giving you the superpower to do anything.
         </p>
       </div>
     </section>
