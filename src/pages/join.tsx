@@ -80,7 +80,7 @@ const JoinWaitlist: React.FC = () => {
               {/* Header */}
               <div className="text-center !mb-8">
                 <h1 className="text-4xl font-semibold text-white !mb-3 drop-shadow-lg">
-                  Join the Waitlist
+                  Get Early Access
                 </h1>
                 <p className="text-white/90 text-lg drop-shadow-sm">
                   Be the first to experience the future of AI
@@ -106,7 +106,7 @@ const JoinWaitlist: React.FC = () => {
                   type="submit"
                   className="w-full max-w-lg bg-white/90 hover:bg-white/50 text-black font-semibold !py-4 !px-6 !mt-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl text-xl lg:text-2xl backdrop-blur-sm"
                 >
-                  Join the Waitlist
+                  Get Early Access
                 </button>
               </form>
 

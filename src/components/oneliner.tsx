@@ -12,7 +12,7 @@ const OneLiner: React.FC = () => (
       viewport={{ once: true, amount: 0.7 }} // triggers when 70% visible
     >
       <h2 className="text-6xl sm:text-6xl md:text-6xl lg:text-9xl font-medium drop-shadow-[0_4px_5px_rgba(0,0,0,0.25)]">
-        Singulariti For Everything
+        Aura For Everything
       </h2>
     </motion.div>
   </section>

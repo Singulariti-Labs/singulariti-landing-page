@@ -11,7 +11,7 @@ const FeaturesSection2: React.FC = () => (
       {/* -------------------------------------------------- */}
       <div className="text-center !mb-16 lg:!mb-20">
         <h2 className="text-4xl lg:text-6xl xl:text-6xl font-medium text-gray-900 !mb-4 drop-shadow-[0_2px_3px_rgba(0,0,0,0.25)]">
-          Singulariti
+          Aura
         </h2>
         <p className="text-xl lg:text-2xl text-black/60 max-w-3xl !mx-auto drop-shadow-[0_2px_3px_rgba(0,0,0,0.25)]" style={{transform: 'skew(-15deg, 0)'}}>
             For

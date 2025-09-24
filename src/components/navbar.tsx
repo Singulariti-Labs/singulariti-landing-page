@@ -64,8 +64,8 @@ const Navbar: React.FC = () => {
               onClick={handleJoinWaitlistClick}
               className="bg-white/60 hover:bg-[#E2DFD0]/50 text-black border-1 text-xl md:text-xl lg:text-2xl font-medium !px-4 !py-2 lg:!px-6 lg:!py-1.5 rounded-lg transition-colors duration-200"
             >
-              <span className="hidden lg:inline">Join Waitlist</span>
-              <span className="lg:hidden">Join waitlist</span>
+              <span className="hidden lg:inline">Get Early Access</span>
+              <span className="lg:hidden">Get Early Access</span>
             </button>
           </div>
         </div>
