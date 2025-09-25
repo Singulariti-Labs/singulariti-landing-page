@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center !gap-4">
             <button 
               onClick={handleJoinWaitlistClick}
-              className="bg-white/60 hover:bg-[#E2DFD0]/50 text-black border-1 text-xl md:text-xl lg:text-2xl font-medium !px-4 !py-2 lg:!px-6 lg:!py-1.5 rounded-lg transition-colors duration-200"
+              className="bg-white/60 hover:bg-[#E2DFD0] text-black border-1 text-xl md:text-xl lg:text-2xl font-medium !px-4 !py-2 lg:!px-6 lg:!py-1.5 rounded-lg transition-colors duration-200"
             >
               <span className="hidden lg:inline">Get Early Access</span>
               <span className="lg:hidden">Get Early Access</span>
