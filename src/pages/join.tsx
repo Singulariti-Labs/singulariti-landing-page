@@ -1,60 +1,38 @@
-// JoinWaitlist.tsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import bgImage from "../assets/join-bg.png";
+import { Button } from "@/components/ui/button";
+import joinBg from "@/assets/join-bg.png";
 
-const JoinWaitlist: React.FC = () => {
+const JoinWaitlist = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/waitlist`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        console.log("Email saved:", data);
-        setIsSubmitted(true);
-      } else {
-        alert(data.error || "Failed to join waitlist");
-      }
-    } catch (err) {
-      console.error("Error submitting email:", err);
-      alert("Something went wrong. Please try again later.");
-    }
+    console.log("Email submitted:", email);
+    setIsSubmitted(true);
   };
 
   const handleBackToForm = () => {
+    window.location.href = "/";
     setIsSubmitted(false);
     setEmail("");
   };
 
   return (
     <div
-      className="min-h-screen w-full flex items-center justify-center relative"
+      className="min-h-screen w-full flex flex-col relative"
       style={{
-        backgroundImage: `url(${bgImage})`,
+        backgroundImage: `url(${joinBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "100vh",
+        minHeight: "100vh",
         width: "100vw",
       }}
     >
-      {/* Background overlay */}
-      <div className="absolute inset-0 bg-black/30"></div>
-
-      {/* Back to Home Link */}
-      <Link
-        to="/"
-        className="absolute top-6 left-6 z-20 inline-flex items-center text-white/80 hover:text-white transition-colors duration-200 backdrop-blur-sm bg-white/10 !px-4 !py-2 rounded-full"
+      <button
+        onClick={() => window.history.back()}
+        className="absolute top-6 left-6 z-20 inline-flex items-center text-black/70 hover:text-black transition-colors duration-200 backdrop-blur-sm bg-white/30 !px-4 !py-2 rounded-full"
       >
         <svg
           className="w-5 h-5 !mr-2"
@@ -70,93 +48,72 @@ const JoinWaitlist: React.FC = () => {
           />
         </svg>
         Back to Home
-      </Link>
+      </button>
 
-      {/* Glassmorphism Form */}
-      <div className="relative z-10 w-full max-w-md lg:max-w-xl !mx-4">
-        <div className="backdrop-blur-2xl bg-white/20 border border-white/30 rounded-3xl !p-8 shadow-2xl">
-          {!isSubmitted ? (
-            <>
-              {/* Header */}
-              <div className="text-center !mb-8">
-                <h1 className="text-4xl font-semibold text-white !mb-3 drop-shadow-lg">
-                  Get Early Access
-                </h1>
-                <p className="text-white/90 text-lg drop-shadow-sm">
-                  Be the first to experience the future of AI
-                </p>
-              </div>
+      {!isSubmitted ? (
+        <>
+          <div className="w-full text-center !pt-24 !px-4">
+            <h1 className="text-7xl lg:text-9xl font-medium text-black !mb-4">
+              Get Aura
+            </h1>
 
-              {/* Email Form */}
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full !px-6 !py-4 backdrop-blur-md bg-white/20 border border-white/40 rounded-xl text-xl text-black placeholder-black focus:ring-2 focus:ring-white/50 focus:border-white/60 transition-all duration-200 text-lg"
-                    placeholder="Enter your email address"
-                  />
-                </div>
+            <p className="text-xl lg:text-3xl text-black/80 !mb-0">
+              Sign Up to get early access for Aura
+            </p>
+          </div>
 
-                <button
-                  type="submit"
-                  className="w-full max-w-lg bg-white/90 hover:bg-white/50 text-black font-semibold !py-4 !px-6 !mt-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl text-xl lg:text-2xl backdrop-blur-sm"
+          <div className="flex-1 flex items-center justify-center !px-4 !-mt-24">
+            <div className="w-full max-w-xl">
+              <div className="flex gap-3 items-center bg-gradient-to-r from-amber-800/40 to-amber-900/50 !px-2 rounded-xl backdrop-blur-sm shadow-xl">
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 !px-4 !py-2 lg:!px-6 lg:!py-2 bg-transparent border-none outline-none text-white placeholder-white/60 text-lg"
+                  placeholder="Type your email here"
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      handleSubmit(e);
+                    }
+                  }}
+                />
+                <Button
+                  onClick={handleSubmit}
+                  className="bg-white hover:bg-white/90 text-black !px-2 !py-2 lg:!px-6 lg:!py-4 rounded-md text-lg font-semibold whitespace-nowrap"
                 >
-                  Get Early Access
-                </button>
-              </form>
-
-              <p className="text-center text-sm text-white/70 !mt-6 drop-shadow-sm">
-                We respect your privacy. Your information will never be shared.
-              </p>
-            </>
-          ) : (
-            <>
-              {/* Success State */}
-              <div className="text-center !mb-6">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-full !mb-4">
-                  <svg
-                    className="w-10 h-10 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
+                  Join Waitlist
+                </Button>
               </div>
+            </div>
+          </div>
 
-              <div className="text-center !mb-8">
-                <h1 className="text-4xl lg:text-5xl font-semibold text-white !mb-4 drop-shadow-lg">
-                  Welcome to the singularity.
-                </h1>
-                <p className="text-white/90 text-lg lg:text-xl drop-shadow-sm leading-relaxed">
-                  The pull begins, and you’ll feel it before the crowd does.
-                </p>
-              </div>
+          <div className="w-full text-center !pb-8 !px-4">
+            <p className="text-md font-medium text-black/90">
+              We respect your privacy. Your information will never be shared.
+            </p>
+          </div>
+        </>
+      ) : (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="w-full !px-4 text-center">
 
-              <div className="space-y-4">
-                <Link
-                  to="/"
-                  onClick={handleBackToForm}
-                  className="block w-full text-center bg-white hover:bg-white/50 text-black text-xl lg:text-2xl font-semibold !py-4 !px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl text-lg backdrop-blur-sm border border-white/40"
-                >
-                  Back to Home
-                </Link>
-              </div>
-            </>
-          )}
+            <h1 className="text-7xl lg:text-8xl font-medium text-black !mb-6">
+            Thanks For Joining Waitlist
+            </h1>
+            <p className="text-xl lg:text-3xl text-black/80 !mb-12 leading-relaxed">
+            We will notify you, Access will be provided soon
+            </p>
+
+            <Button
+              onClick={handleBackToForm}
+              className="bg-white hover:bg-white/90 text-black !px-12 !py-6 rounded-lg text-xl font-semibold"
+            >
+              Back to Home
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

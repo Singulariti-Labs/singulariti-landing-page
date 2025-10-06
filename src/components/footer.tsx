@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const Footer: React.FC = () => {
   const handleJoinWaitlistClick = () => {
     console.log("Join waitlist clicked");
@@ -18,20 +20,21 @@ const Footer: React.FC = () => {
       "
     >
       {/* Left – CTA */}
-      <button
+      <Button
         onClick={handleJoinWaitlistClick}
+        variant="outline"
         className="relative z-10
-                   !mt-8 !mb-8
-                   text-black font-medium text-lg lg:text-3xl
-                   !px-6 !py-2 lg:!px-8 lg:!py-2 rounded-xl
-                   bg-white/90
-                   border border-black/50
-                   shadow-inner shadow-black/10
-                   hover:brightness-105 hover:scale-102 hover:bg-[#E2DFD0]
-                   transition-all duration-200"
+             !mt-8 !mb-8
+             text-black font-medium text-lg lg:text-2xl
+             !px-6 !py-2 lg:!px-6 lg:!py-5 rounded-xl
+             bg-white/90
+             border border-black/50
+             shadow-inner shadow-black/10
+             hover:brightness-105 hover:scale-102 hover:bg-[#E2DFD0]
+             transition-all duration-200"
       >
         Get Early Access
-      </button>
+      </Button>
 
       {/* Right – Copyright */}
       <p className="relative z-10 text-black text-sm lg:text-base font-medium drop-shadow-sm">

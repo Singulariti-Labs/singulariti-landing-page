@@ -1,6 +1,7 @@
 // Navbar.tsx - With navigation functionality
 import React from "react";
 import logo from "../assets/singulariti-logo.png";
+import { Button } from "@/components/ui/button";
 
 const Navbar: React.FC = () => {
   const handleHomeClick = () => {
@@ -11,9 +12,9 @@ const Navbar: React.FC = () => {
     if (window.location.pathname === "/") {
       const featuresSection = document.getElementById("section4");
       if (featuresSection) {
-        featuresSection.scrollIntoView({ 
+        featuresSection.scrollIntoView({
           behavior: "smooth",
-          block: "start"
+          block: "start",
         });
       }
     } else {
@@ -31,12 +32,11 @@ const Navbar: React.FC = () => {
       <div className="w-full flex justify-center">
         {/* Inner container with max-width and proper centering */}
         <div className="w-full max-w-[1920px] !px-4 sm:!px-8 lg:!px-16 xl:!px-16 h-16 flex items-center justify-between">
-          
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src={logo} 
-              alt="Singulariti Logo" 
+            <img
+              src={logo}
+              alt="Singulariti Logo"
               className="h-16 md:h-14 lg:h-18 w-auto object-contain select-none cursor-pointer"
               onClick={handleHomeClick}
             />
@@ -44,13 +44,13 @@ const Navbar: React.FC = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center !space-x-6 lg:!space-x-8 xl:!space-x-12">
-            <button 
+            <button
               onClick={handleHomeClick}
               className="text-xl text-gray-800 hover:text-black font-extrabold transition-colors duration-200 bg-transparent border-none cursor-pointer"
             >
               Home
             </button>
-            <button 
+            <button
               onClick={handleFeaturesClick}
               className="text-xl text-gray-800 hover:text-black font-bold transition-colors duration-200 bg-transparent border-none cursor-pointer"
             >
@@ -60,13 +60,15 @@ const Navbar: React.FC = () => {
 
           {/* Right side - Join Waitlist always visible */}
           <div className="flex items-center !gap-4">
-            <button 
+            <Button
               onClick={handleJoinWaitlistClick}
+              variant="outline"
+              size="lg"
               className="bg-white/60 hover:bg-[#E2DFD0] text-black border-1 text-xl md:text-xl lg:text-2xl font-medium !px-4 !py-2 lg:!px-6 lg:!py-1.5 rounded-lg transition-colors duration-200"
             >
               <span className="hidden lg:inline">Get Early Access</span>
               <span className="lg:hidden">Get Early Access</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
