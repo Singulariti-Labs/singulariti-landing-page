@@ -1,14 +1,18 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Footer: React.FC = () => {
+  const navigate = useNavigate();
+
   const handleJoinWaitlistClick = () => {
-    console.log("Join waitlist clicked");
+    // window.location.href = "/join-waitlist";
+    navigate("/join-waitlist");
   };
 
   return (
     <footer
       className="
-        relative w-full h-[10vh] lg:h-[10vh]
+        relative w-full h-[6vh] lg:h-[10vh]
         flex items-center justify-between
         !px-8 sm:!px-12 lg:!px-16 xl:!px-24
         /* --- white glass --- */

@@ -2,8 +2,11 @@
 import React from "react";
 import logo from "../assets/singulariti-logo.png";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
   const handleHomeClick = () => {
     window.location.href = "/";
   };
@@ -23,7 +26,8 @@ const Navbar: React.FC = () => {
   };
 
   const handleJoinWaitlistClick = () => {
-    window.location.href = "/join-waitlist";
+    // window.location.href = "/join-waitlist";
+     navigate("/join-waitlist");
   };
 
   return (
