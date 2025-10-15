@@ -1,12 +1,12 @@
-// Navbar.tsx - With navigation functionality
+// Navbar.tsx
 import React from "react";
 import logo from "../assets/singulariti-logo.png";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
-
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
+
   const handleHomeClick = () => {
     window.location.href = "/";
   };
@@ -25,19 +25,21 @@ const Navbar: React.FC = () => {
     }
   };
 
+  const handleAboutClick = () => {
+    navigate("/about");
+  };
+
   const handleJoinWaitlistClick = () => {
-    // window.location.href = "/join-waitlist";
-     navigate("/join-waitlist");
+    navigate("/join-waitlist");
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/30 border-b border-white/20 shadow-sm">
-      {/* Outer container to ensure centering */}
-      <div className="w-full flex justify-center">
-        {/* Inner container with max-width and proper centering */}
-        <div className="w-full max-w-[1920px] !px-4 sm:!px-8 lg:!px-16 xl:!px-16 h-16 flex items-center justify-between">
+      <div className="w-full flex justify-center relative">
+        <div className="w-full max-w-[1920px] !px-4 sm:!px-8 lg:!px-16 xl:!px-16 h-16 flex items-center justify-between relative">
+
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center z-20">
             <img
               src={logo}
               alt="Singulariti Logo"
@@ -46,8 +48,8 @@ const Navbar: React.FC = () => {
             />
           </div>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center !space-x-6 lg:!space-x-8 xl:!space-x-12">
+          {/* Navigation Links - Centered */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center !space-x-6 lg:!space-x-8 xl:!space-x-12 z-10">
             <button
               onClick={handleHomeClick}
               className="text-xl text-gray-800 hover:text-black font-extrabold transition-colors duration-200 bg-transparent border-none cursor-pointer"
@@ -60,10 +62,16 @@ const Navbar: React.FC = () => {
             >
               Features
             </button>
+            <button
+              onClick={handleAboutClick}
+              className="text-xl text-gray-800 hover:text-black font-bold transition-colors duration-200 bg-transparent border-none cursor-pointer"
+            >
+              About
+            </button>
           </div>
 
-          {/* Right side - Join Waitlist always visible */}
-          <div className="flex items-center !gap-4">
+          {/* Right side - Join Waitlist */}
+          <div className="flex items-center !gap-4 z-20">
             <Button
               onClick={handleJoinWaitlistClick}
               variant="outline"

@@ -13,6 +13,7 @@ import OneLiner from './components/oneliner';
 import Footer from './components/footer';
 import JoinWaitlist from './pages/join';
 import RoadMap from './pages/road-map';
+import About from "./pages/about";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         {/* New page: /join-waitlist */}
         <Route path="/join-waitlist" element={<JoinWaitlist />} />
         <Route path="/singulariti-road-map" element={<RoadMap />}/>
+        <Route path="/about" element={<About/>}/>
       </Routes>
     </>
   );
