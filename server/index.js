@@ -14,11 +14,15 @@ app.use(express.json());
 
 // ================== API ROUTES ==================
 app.post("/api/waitlist", async (req, res) => {
-  const { email } = req.body;
-  if (!email) return res.status(400).json({ error: "Email is required" });
+  const { email, name, profession, system } = req.body;
+  if (!email || !name || !profession || !system) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
 
   try {
-    const newEntry = await prisma.waitlist.create({ data: { email } });
+    const newEntry = await prisma.new_waitlist.create({
+      data: { email, name, profession, system },
+    });
     res.json({ success: true, entry: newEntry });
   } catch (error) {
     if (error.code === "P2002") {

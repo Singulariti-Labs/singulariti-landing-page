@@ -13,8 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Waitlist {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  createdAt DateTime @default(now())
+model new_waitlist {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  name       String
+  profession String
+  system     String
+  createdAt  DateTime @default(now())
+  
+  @@map("new_waitlist")
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import HeroSection from './components/hero';
 import Navbar from './components/navbar';
 import Highlight from './components/highlight';
@@ -14,12 +14,16 @@ import Footer from './components/footer';
 import JoinWaitlist from './pages/join';
 import RoadMap from './pages/road-map';
 import About from "./pages/about";
+import GetYourAuraPage from "./pages/get_your_aura";
+import NotifyMePage from "./pages/notify_me";
 
 function App() {
+  const location = useLocation();
+  const hideNavbarRoutes = ['/notify-me'];
+
   return (
     <>
-      <Navbar />
-
+      {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
         {/* Home page */}
         <Route
@@ -41,8 +45,10 @@ function App() {
 
         {/* New page: /join-waitlist */}
         <Route path="/join-waitlist" element={<JoinWaitlist />} />
-        <Route path="/singulariti-road-map" element={<RoadMap />}/>
-        <Route path="/about" element={<About/>}/>
+        <Route path="/singulariti-road-map" element={<RoadMap />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/get-your-aura" element={<GetYourAuraPage />} />
+        <Route path="/notify-me" element={<NotifyMePage />} />
       </Routes>
     </>
   );

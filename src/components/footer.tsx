@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
              hover:brightness-105 hover:scale-102 hover:bg-[#E2DFD0]
              transition-all duration-200"
       >
-        Get Early Access
+        Get Your Aura
       </Button>
 
       {/* Right – Copyright */}
