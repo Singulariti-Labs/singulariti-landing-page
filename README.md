@@ -76,7 +76,7 @@ npm run start
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `POST` | `/api/waitlist` | Add email to waitlist |
+| `POST` | `/api/waitlist` | Add user details to waitlist |
 | `GET` | `/api/waitlist` | Get all waitlist emails |
 
 ## Notes
