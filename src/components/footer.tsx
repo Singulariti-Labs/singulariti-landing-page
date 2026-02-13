@@ -5,8 +5,7 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   const handleJoinWaitlistClick = () => {
-    // window.location.href = "/join-waitlist";
-    navigate("/join-waitlist");
+    navigate("/get-your-aura");
   };
 
   return (

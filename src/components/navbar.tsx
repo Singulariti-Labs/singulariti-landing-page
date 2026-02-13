@@ -1,17 +1,21 @@
-// Navbar.tsx
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/singulariti-logo.png";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleHomeClick = () => {
+    setIsMenuOpen(false);
     window.location.href = "/";
   };
 
   const handleFeaturesClick = () => {
+    setIsMenuOpen(false);
     if (window.location.pathname === "/") {
       const featuresSection = document.getElementById("section4");
       if (featuresSection) {
@@ -26,11 +30,13 @@ const Navbar: React.FC = () => {
   };
 
   const handleAboutClick = () => {
+    setIsMenuOpen(false);
     navigate("/about");
   };
 
   const handleJoinWaitlistClick = () => {
-    navigate("/join-waitlist");
+    setIsMenuOpen(false);
+    navigate("/get-your-aura");
   };
 
   return (
@@ -48,8 +54,8 @@ const Navbar: React.FC = () => {
             />
           </div>
 
-          {/* Navigation Links - Centered */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center !space-x-6 lg:!space-x-8 xl:!space-x-12 z-10">
+          {/* Navigation Links - Centered (Hidden on Mobile) */}
+          <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center !space-x-6 lg:!space-x-8 xl:!space-x-12 z-10">
             <button
               onClick={handleHomeClick}
               className="text-xl text-gray-800 hover:text-black font-extrabold transition-colors duration-200 bg-transparent border-none cursor-pointer"
@@ -70,20 +76,61 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Right side - Join Waitlist */}
-          <div className="flex items-center !gap-4 z-20">
+          {/* Right side - Join Waitlist & Mobile Menu Toggle */}
+          <div className="flex items-center !gap-2 md:!gap-4 z-20">
             <Button
               onClick={handleJoinWaitlistClick}
               variant="outline"
               size="lg"
-              className="bg-white/60 hover:bg-[#E2DFD0] text-black border-1 text-xl md:text-xl lg:text-2xl font-medium !px-4 !py-2 lg:!px-6 lg:!py-1.5 rounded-lg transition-colors duration-200"
+              className="bg-white/60 hover:bg-[#E2DFD0] text-black border-1 text-lg sm:text-xl md:text-xl lg:text-2xl font-medium !px-3 !py-1.5 sm:!px-4 sm:!py-2 lg:!px-6 lg:!py-1.5 rounded-lg transition-colors duration-200"
             >
-              <span className="hidden lg:inline">Get Your Aura</span>
-              <span className="lg:hidden">Aura</span>
+              <span className="hidden sm:inline">Get Your Aura</span>
+              <span className="sm:hidden">Aura</span>
             </Button>
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden !p-2 text-gray-800 hover:text-black transition-colors"
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+          >
+            <div className="flex flex-col !p-4 !space-y-4">
+              <button
+                onClick={handleHomeClick}
+                className="text-left text-xl font-bold text-gray-800 hover:text-black !py-2 border-b border-gray-50"
+              >
+                Home
+              </button>
+              <button
+                onClick={handleFeaturesClick}
+                className="text-left text-xl font-bold text-gray-800 hover:text-black !py-2 border-b border-gray-50"
+              >
+                Features
+              </button>
+              <button
+                onClick={handleAboutClick}
+                className="text-left text-xl font-bold text-gray-800 hover:text-black !py-2"
+              >
+                About
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

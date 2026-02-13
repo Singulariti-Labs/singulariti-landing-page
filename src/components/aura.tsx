@@ -3,10 +3,12 @@ import auraImg from "../assets/aura-card.png";
 import seesIcon from "../assets/sees-icon.png";
 import hearsIcon from "../assets/hears-icon.png";
 import knowsIcon from "../assets/knows-icon.png";
+import { useNavigate } from "react-router-dom";
 
 const Aura: React.FC = () => {
+  const navigate = useNavigate();
   const handleJoinWaitlistClick = () => {
-    window.location.href = "/join-waitlist";
+    navigate("/get-your-aura");
   };
 
   return (
