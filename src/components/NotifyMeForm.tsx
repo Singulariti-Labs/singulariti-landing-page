@@ -43,6 +43,12 @@ const NotifyMeForm: React.FC<NotifyMeFormProps> = ({ onClose }) => {
             if (!res.ok) throw new Error(data.error || "Failed to register");
 
             setStep([3, 1]); // Move to Thank You slide
+
+            // Trigger download for Windows users
+            if (formData.system.toLowerCase() === "windows") {
+                const downloadUrl = "https://github.com/Singulariti-Labs/Aura_Release/releases/download/0.1.0-Beta/Aura.0.1.0-beta.msi";
+                window.location.href = downloadUrl;
+            }
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -303,7 +309,9 @@ const NotifyMeForm: React.FC<NotifyMeFormProps> = ({ onClose }) => {
                                 </div>
                                 <div className="text-left w-[90%] md:w-[70%]">
                                     <p className="text-base md:text-xl text-black font-semibold !mt-2 md:!mt-4">
-                                        You're on the list. We'll notify you soon.
+                                        {formData.system.toLowerCase() === "windows"
+                                            ? "You’re in. Downloading Aura…"
+                                            : "You're on the list. We'll notify you soon."}
                                     </p>
                                 </div>
                                 <div className="w-[90%] md:w-[70%] flex justify-start !mt-4 h-10">

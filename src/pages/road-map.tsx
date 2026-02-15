@@ -167,10 +167,10 @@ const RoadMap: React.FC = () => {
             }}
           />
         </div>
-         {/* ===== full-bleed glass footer ===== */}
-         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-[3vh] lg:h-[5vh] flex items-center justify-center bg-white/10 backdrop-blur-[200px] border-t border-white/20 shadow-lg">
+        {/* ===== full-bleed glass footer ===== */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-[3vh] lg:h-[5vh] flex items-center justify-center bg-white/10 backdrop-blur-[200px] border-t border-white/20 shadow-lg">
           <p className="text-black font-medium text-md lg:text-lg tracking-wide drop-shadow-sm">
-            © 2025 Singulariti
+            © 2026 Singulariti
           </p>
         </div>
       </section>

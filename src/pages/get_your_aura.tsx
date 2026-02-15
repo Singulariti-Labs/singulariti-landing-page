@@ -58,6 +58,7 @@ const GetYourAuraPage: React.FC = () => {
 
                                 {/* Download Button */}
                                 <Button
+                                    onClick={() => navigate('/notify-me', { state: { system: "windows" } })}
                                     className="bg-[#F5F5ED] hover:bg-[#EBEBE0] text-black !px-10 !md:px-14 !py-1 !md:py-1 rounded-[15px] md:rounded-[20px] text-xl md:text-2xl font-semibold shadow-[0_8px_10px_0_rgba(0,0,0,0.25)] transition-all h-auto"
                                 >
                                     Download

@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
 
       {/* Right – Copyright */}
       <p className="relative z-10 text-black text-sm lg:text-base font-medium drop-shadow-sm">
-        © 2025 Singulariti
+        © 2026 Singulariti
       </p>
     </footer>
   );
