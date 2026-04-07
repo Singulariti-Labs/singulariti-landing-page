@@ -44,20 +44,28 @@ section {
 }
 
 /* ---------- Global reset & scrolling behavior ---------- */
-html,
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  min-width: 320px;
+  background-color: #ffffff;
+  /* ✅ allow horizontal overflow at html level, will be clipped by body */
+  overflow-x: visible;
+}
+
 body {
   margin: 0;
   padding: 0;
-
   min-height: 100%;
   min-width: 320px;
+  background-color: #ffffff;
 
-  /* ✅ disable rubber-band bounce / scroll chaining everywhere */
-  overscroll-behavior-y: none;
+  /* ✅ improve trackpad scroll reliability */
+  touch-action: pan-y;
 
   /* ✅ prevent sideways scroll */
   overflow-x: hidden;
-  background-color: #ffffff;
 }
 
 /* ✅ Make sure root does not hijack scroll */

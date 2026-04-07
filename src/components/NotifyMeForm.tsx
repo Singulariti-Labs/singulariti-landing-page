@@ -127,7 +127,7 @@ const NotifyMeForm: React.FC<NotifyMeFormProps> = ({ onClose }) => {
     };
 
     return (
-        <div className="flex flex-col w-full h-full relative overflow-hidden">
+        <div className="flex flex-col w-full h-full relative overflow-y-auto overflow-x-hidden">
 
             {/* Top Bar: Progress & Close */}
             <div className="absolute top-0 left-0 w-full z-50 flex flex-col">
@@ -147,7 +147,7 @@ const NotifyMeForm: React.FC<NotifyMeFormProps> = ({ onClose }) => {
             </div>
 
             {/* Content Area */}
-            <div className="flex-grow flex flex-col items-center justify-center !p-4 w-full relative overflow-hidden">
+            <div className="flex-grow flex flex-col items-center justify-center !p-4 w-full relative overflow-visible">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                     {step === 0 && (
                         <motion.div

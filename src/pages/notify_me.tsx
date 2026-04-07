@@ -7,7 +7,7 @@ const NotifyMePage: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex flex-col h-screen bg-white relative overflow-hidden">
+        <div className="flex flex-col h-screen bg-white relative overflow-y-auto overflow-x-hidden">
             {/* Background Logo - Exact same position as in get_your_aura.tsx */}
             <div
                 className="absolute pointer-events-none z-0"

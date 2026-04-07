@@ -15,7 +15,7 @@ const GetYourAuraPage: React.FC = () => {
             <Navbar />
 
             {/* Main Content Area */}
-            <main className="flex-grow relative w-full flex flex-col items-center justify-center pt-32 md:pt-48 pb-16 md:pb-24 px-4 overflow-hidden">
+            <main className="flex-grow relative w-full flex flex-col items-center justify-center pt-32 md:pt-48 pb-16 md:pb-24 px-4 overflow-visible">
 
                 {/* Background Logo */}
                 <div
