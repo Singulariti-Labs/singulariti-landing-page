@@ -2,16 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const OneLiner: React.FC = () => (
-  <section className="relative w-full h-[80dvh] bg-white flex items-center justify-center overflow-hidden">
-    {/* ===== centred text ===== */}
+  <section className="relative w-full min-h-[60dvh] bg-[#F0EEE6] flex items-center justify-center overflow-hidden px-6">
     <motion.div
-      className="relative z-10 text-center text-black"
-      initial={{ opacity: 0, y: 40 }}
+      className="relative z-10 text-center max-w-[1200px]"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 2, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.7 }} // triggers when 70% visible
+      transition={{ duration: 1, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.5 }}
     >
-      <h2 className="text-6xl sm:text-6xl md:text-6xl lg:text-9xl font-medium drop-shadow-[0_4px_5px_rgba(0,0,0,0.25)]">
+      <h2 className="text-[#141413] text-[clamp(2.5rem,10vw,10rem)] font-medium leading-[0.9] tracking-tighter">
         Aura For Everything
       </h2>
     </motion.div>

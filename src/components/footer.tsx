@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Footer: React.FC = () => {
@@ -9,40 +9,21 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer
-      className="
-        relative w-full h-[6vh] lg:h-[10vh]
-        flex items-center justify-between
-        !px-8 sm:!px-12 lg:!px-16 xl:!px-24
-        /* --- white glass --- */
-        bg-white/60
-        backdrop-blur-2xl
-        border-b border-white/20
-        /* shadow on TOP edge */
-        shadow-[0_-4px_5px_rgba(0,0,0,0.08),_inset_0_1px_0_rgba(255,255,255,0.6)]
-      "
-    >
-      {/* Left – CTA */}
-      <Button
-        onClick={handleJoinWaitlistClick}
-        variant="outline"
-        className="relative z-10
-             !mt-8 !mb-8
-             text-black font-medium text-lg lg:text-2xl
-             !px-6 !py-2 lg:!px-6 lg:!py-5 rounded-xl
-             bg-white/90
-             border border-black/50
-             shadow-inner shadow-black/10
-             hover:brightness-105 hover:scale-102 hover:bg-[#E2DFD0]
-             transition-all duration-200"
-      >
-        Get Your Aura
-      </Button>
+    <footer className="w-full bg-[#F0EEE6] border-t border-[#141413]/10 px-6 py-10">
+      <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 font-medium">
+        {/* Left – CTA */}
+        <button
+          onClick={handleJoinWaitlistClick}
+          className="bg-[#141413] text-[#F0EEE6] px-8 py-3 rounded-full text-lg font-medium hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+        >
+          Get Your Aura
+        </button>
 
-      {/* Right – Copyright */}
-      <p className="relative z-10 text-black text-sm lg:text-base font-medium drop-shadow-sm">
-        © 2026 Singulariti
-      </p>
+        {/* Right – Copyright */}
+        <p className="text-[#141413]/50 text-sm md:text-base">
+          © 2026 Singulariti
+        </p>
+      </div>
     </footer>
   );
 };

@@ -2,19 +2,18 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const Highlight: React.FC = () => (
-  <section className="relative w-full h-[110dvh] bg-white flex items-center justify-center overflow-hidden">
-    {/* ===== centred text ===== */}
+  <section className="relative w-full min-h-[80dvh] bg-[#F0EEE6] flex items-center justify-center overflow-hidden px-6">
     <motion.div
-      className="relative z-10 text-center text-black"
-      initial={{ opacity: 0, y: 40 }}
+      className="relative z-10 text-center max-w-[1200px]"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 2, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.7 }} // triggers when 50% visible
+      transition={{ duration: 1, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.5 }}
     >
-      <h2 className="text-2xl sm:text-2xl md:text-4xl lg:text-7xl font-medium drop-shadow-[0_4px_5px_rgba(0,0,0,0.25)]">
+      <h2 className="text-[#141413] text-[clamp(2rem,6vw,5rem)] font-medium leading-[1.1] tracking-tight">
         Personalised Agentic Layer
       </h2>
-      <h2 className="mt-4 font-medium text-2xl sm:text-2xl md:text-4xl lg:text-7xl drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
+      <h2 className="mt-4 text-[#141413]/40 text-[clamp(2rem,6vw,5rem)] font-medium leading-[1.1] tracking-tight">
         Between You & Your Operating System
       </h2>
     </motion.div>

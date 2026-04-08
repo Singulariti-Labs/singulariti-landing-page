@@ -2,13 +2,16 @@
 
 /* ---------- Base font & rendering ---------- */
 :root {
-  font-family: "Darker Grotesque", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg-primary: #F0EEE6;
+  --text-primary: #141413;
+  --accent-primary: #141413;
+
+  font-family: "Inter", "Darker Grotesque", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(33, 53, 71, 1);
-  background-color: white;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,30 +19,44 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- Responsive section padding ---------- */
-section {
-  padding-left: 1rem;  /* px-4 */
-  padding-right: 1rem;
+/* ---------- Global Layout Rules ---------- */
+/* 
+- Mobile 88% Content (6% margin)
+- Tablet 82% Content (9% margin)
+- Small Desktop 80% Content (10% margin)
+- Large Desktop 75% Content (12.5% margin)
+- Ultra Wide (1600px+) 70% Content (15% margin)
+*/
+
+.content-container {
+  width: 88%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block;
 }
 
-@media (min-width: 640px) {
-  section {
-    padding-left: 2rem; /* sm:px-8 */
-    padding-right: 2rem;
+@media (min-width: 768px) {
+  .content-container {
+    width: 82%;
   }
 }
 
 @media (min-width: 1024px) {
-  section {
-    padding-left: 4rem; /* lg:px-16 */
-    padding-right: 4rem;
+  .content-container {
+    width: 80% !important;
+    max-width: 1400px;
   }
 }
 
-@media (min-width: 1280px) {
-  section {
-    padding-left: 4rem; /* xl:px-16 */
-    padding-right: 4rem;
+@media (min-width: 1600px) {
+  .content-container {
+    width: 70% !important;
+  }
+}
+
+@media (min-width: 2000px) {
+  .content-container {
+    width: 60% !important;
   }
 }
 
@@ -49,7 +66,7 @@ html {
   padding: 0;
   min-height: 100%;
   min-width: 320px;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   /* ✅ allow horizontal overflow at html level, will be clipped by body */
   overflow-x: visible;
 }
@@ -59,7 +76,7 @@ body {
   padding: 0;
   min-height: 100%;
   min-width: 320px;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
 
   /* ✅ improve trackpad scroll reliability */
   touch-action: pan-y;
@@ -73,8 +90,10 @@ body {
 .App {
   width: 100%;
   min-height: 100%;
-  height: auto;         /* don’t force 100vh unless you really want it */
-  overflow: visible;    /* let scroll bubble up to body */
+  height: auto;
+  /* don’t force 100vh unless you really want it */
+  overflow: visible;
+  /* let scroll bubble up to body */
 }
 
 /* ---------- Typography ---------- */

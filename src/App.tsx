@@ -22,7 +22,7 @@ function App() {
   const hideNavbarRoutes = ['/notify-me'];
 
   return (
-    <>
+    <div className="content-container">
       {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
         {/* Home page */}
@@ -50,7 +50,7 @@ function App() {
         <Route path="/get-your-aura" element={<GetYourAuraPage />} />
         <Route path="/notify-me" element={<NotifyMePage />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
