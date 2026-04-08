@@ -24,17 +24,17 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#F0EEE6] border-b border-[#141413]/5 w-full">
+    <nav className="sticky top-0 z-50 bg-[#F0EEE6] w-full">
       <div className="w-full h-14 flex items-center justify-between">
         {/* Logo */}
-        <div 
-          className="flex items-center cursor-pointer group" 
+        <div
+          className="flex items-center cursor-pointer group"
           onClick={handleHomeClick}
         >
           <img
             src={logo}
             alt="Singulariti Logo"
-            className="h-7 w-auto object-contain"
+            className="h-14 w-auto object-contain"
           />
         </div>
 
@@ -46,10 +46,10 @@ const Navbar: React.FC = () => {
           >
             Home
           </button>
-          
+
           <button
             onClick={handleJoinWaitlistClick}
-            className="bg-[#141413] text-[#F0EEE6] px-5 py-2 rounded-full text-[14px] font-medium hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            className="bg-[#141413] text-[#F0EEE6] px-4 py-2 rounded-[5px] text-[14px] font-medium hover:bg-[#B8B6AD] hover:text-[#141413] transition-all duration-200"
           >
             Get Your Aura
           </button>
@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-[#F0EEE6] border-b border-[#141413]/5 px-6 py-6 flex flex-col gap-4 shadow-xl"
+            className="md:hidden absolute top-full left-0 right-0 bg-[#F0EEE6] px-6 py-6 flex flex-col gap-4 shadow-xl"
           >
             <button
               onClick={handleHomeClick}
@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
             </button>
             <button
               onClick={handleJoinWaitlistClick}
-              className="bg-[#141413] text-[#F0EEE6] w-full py-3 rounded-xl text-lg font-medium"
+              className="bg-[#141413] text-[#F0EEE6] w-full py-2 rounded-xl text-md font-medium"
             >
               Get Your Aura
             </button>

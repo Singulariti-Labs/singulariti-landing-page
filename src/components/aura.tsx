@@ -16,7 +16,7 @@ const Aura: React.FC = () => {
     <section className="relative w-full min-h-screen bg-[#F0EEE6] px-6 py-24">
       <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-20 items-center">
         {/* Left Content */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -29,7 +29,7 @@ const Aura: React.FC = () => {
             className="w-full max-w-md object-contain"
           />
           <h2 className="mt-12 text-[#141413] text-4xl lg:text-5xl font-medium leading-tight max-w-[500px]">
-             Your Personal AI for the Operating System.
+            Your Personal AI for the Operating System.
           </h2>
           <p className="mt-6 text-[#141413]/70 text-lg lg:text-xl font-medium max-w-[500px]">
             More than an assistant, it’s a partner that transforms the way you connect with technology.

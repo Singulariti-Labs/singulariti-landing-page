@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="relative min-h-screen w-full flex flex-col bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50 overflow-hidden">
+    <div className="relative min-h-screen w-full flex flex-col bg-[#F0EEE6] overflow-hidden">
       {/* Back button */}
       <button
         onClick={() => window.history.back()}
