@@ -2,8 +2,8 @@ import React from 'react';
 import { Routes, Route, useLocation } from "react-router-dom";
 import HeroSection from './components/hero';
 import Navbar from './components/navbar';
-import Highlight from './components/highlight';
-import Aura from './components/aura';
+import Section2 from './components/section2';
+import Section3 from './components/section3';
 import FeaturesSection1 from './components/features_1';
 import FeaturesSection2 from './components/features_2';
 import FeaturesSection3 from './components/features_3';
@@ -30,8 +30,8 @@ function App() {
           element={
             <>
               <HeroSection />
-              <Highlight />
-              <Aura />
+              <Section2 />
+              <Section3 />
               <FeaturesSection1 />
               <FeaturesSection2 />
               <FeaturesSection3 />

@@ -11,7 +11,7 @@ const HeroSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative w-full h-[900px] flex flex-col items-center justify-center py-20 bg-transparent px-[4px]">
+    <section className="relative w-full h-[720px] flex flex-col items-center justify-center py-20 bg-transparent px-[4px]">
 
       {/* Background Orbits (Full Width Breakout) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full pointer-events-none select-none overflow-hidden z-0">
@@ -77,7 +77,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Main Content Layout */}
-      <div className="relative z-10 w-full max-w-[1600px] flex flex-col items-start justify-start gap-12 md:gap-16">
+      <div className="relative z-10 w-full max-w-[1600px] flex flex-col items-start justify-start gap-12 md:gap-16 -translate-y-12">
 
         {/* Top: Bold Header */}
         <div className="w-full md:w-[85%] lg:w-[75%] flex flex-col items-start translate-x-[-10px] md:translate-x-0">
