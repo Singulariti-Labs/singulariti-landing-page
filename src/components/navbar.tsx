@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
 
           <button
             onClick={handleJoinWaitlistClick}
-            className="bg-[#141413] text-[#F0EEE6] px-4 py-2 rounded-[5px] text-[14px] font-medium hover:bg-[#B8B6AD] hover:text-[#141413] transition-all duration-200"
+            className="bg-[#141413] text-[#F0EEE6] px-4 py-2 rounded-[5px] text-[14px] font-medium hover:bg-[#141413]/60 hover:text-[#F0EEE6] transition-all duration-200"
           >
             Get Your Aura
           </button>

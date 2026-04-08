@@ -1,5 +1,6 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap');
 @import "./App.css";
+@import "tailwindcss";
 
 /* ---------- Base font & rendering ---------- */
 @layer base {
@@ -7,8 +8,10 @@
     --bg-primary: #F0EEE6;
     --text-primary: #141413;
     --accent-primary: #141413;
+    --font-inter: "Inter", system-ui, sans-serif;
+    --font-darker: "Darker Grotesque", system-ui, sans-serif;
 
-    font-family: "Inter", "Darker Grotesque", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: var(--font-inter);
     line-height: 1.5;
     font-weight: 400;
 
@@ -115,6 +118,14 @@
     font-size: 3.2em;
     line-height: 1.1;
   } */
+
+  .font-inter {
+    font-family: var(--font-inter);
+  }
+
+  .font-darker {
+    font-family: var(--font-darker);
+  }
 }
 
 /* ---------- Light mode tweak ---------- */
