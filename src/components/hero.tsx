@@ -13,8 +13,8 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative w-full h-[720px] flex flex-col items-center justify-center py-20 bg-transparent px-[4px]">
 
-      {/* Background Orbits (Full Width Breakout) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full pointer-events-none select-none overflow-hidden z-0">
+      {/* Background Orbits (Full Width Breakout) - Hidden on mobile/tablets per user request */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full pointer-events-none select-none overflow-hidden z-0 hidden lg:block">
 
         {/* Anchored Orbit Container: This ensures the orbits stay centered relative to the layout and don't break on wider displays */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[5000px] h-full pointer-events-none">
@@ -77,29 +77,29 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Main Content Layout */}
-      <div className="relative z-10 w-full max-w-[1600px] flex flex-col items-start justify-start gap-12 md:gap-16 -translate-y-12">
+      <div className="relative z-10 w-full max-w-[1600px] flex flex-col items-center lg:items-start justify-center lg:justify-start gap-8 md:gap-16 -translate-y-6 lg:-translate-y-12 px-6 lg:px-0">
 
         {/* Top: Bold Header */}
-        <div className="w-full md:w-[85%] lg:w-[75%] flex flex-col items-start translate-x-[-10px] md:translate-x-0">
+        <div className="w-full lg:w-[85%] xl:w-[75%] flex flex-col items-center lg:items-start">
           <motion.h1
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#141413] text-[72px] font-medium leading-[1.05] tracking-tighter font-inter"
+            className="text-[#141413] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[72px] font-medium leading-[1.1] lg:leading-[1.05] tracking-tighter font-inter text-center lg:text-left"
           >
-            AI Research & Products <br />
-            To Bring Safe, Personal & <br />
+            AI Research & Products <br className="hidden lg:block" />
+            To Bring Safe, Personal & <br className="hidden lg:block" />
             General Intelligence For Everyone
           </motion.h1>
         </div>
 
         {/* Bottom: Subtext with Darker Grotesque */}
-        <div className="w-full flex flex-col items-end mt-4 md:mt-8 pr-[4px]">
+        <div className="w-full flex flex-col items-center lg:items-end mt-4 md:mt-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative text-right max-w-[90%] md:max-w-[70%]"
+            className="relative text-center lg:text-right max-w-full lg:max-w-[70%]"
           >
             {/* Blurred Ellipse Halo behind text */}
             <div
@@ -107,8 +107,8 @@ const HeroSection: React.FC = () => {
               style={{ zIndex: -1 }}
             />
 
-            <p className="py-2 px-6 text-[#7A3220] font-semibold text-[clamp(1.4rem,3vw,2.4rem)] leading-[1.15] font-darker tracking-tight inline-block text-right">
-              Old Technology is built for humans <br />
+            <p className="py-2 px-6 text-[#7A3220] font-semibold text-[clamp(1.1rem,4vw,2.4rem)] leading-[1.2] md:leading-[1.15] font-darker tracking-tight inline-block text-center lg:text-right">
+              Old Technology is built for humans <br className="hidden lg:block" />
               We are building for the era of AI
             </p>
           </motion.div>

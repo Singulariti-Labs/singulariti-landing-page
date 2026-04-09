@@ -97,8 +97,8 @@ const Section2: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative w-full mt-32 pt-10 pb-10 bg-transparent flex items-center justify-center overflow-visible">
-      <div className="relative w-full h-[360px] flex items-center justify-center rounded-[40px] overflow-hidden group z-10">
+    <section className="relative w-full mt-16 md:mt-32 pt-10 pb-10 bg-transparent flex items-center justify-center overflow-visible px-4 md:px-0">
+      <div className="relative w-full min-h-[280px] md:h-[360px] py-12 md:py-0 flex items-center justify-center rounded-[30px] md:rounded-[40px] overflow-hidden group z-10">
         {/* Animated Background Canvas Container */}
         <div className="absolute inset-0 pointer-events-none select-none z-0">
           <canvas
@@ -109,9 +109,9 @@ const Section2: React.FC = () => {
         </div>
 
         {/* Content Overlay */}
-        <div className="relative z-10 w-full px-8 md:px-24 pointer-events-none">
+        <div className="relative z-10 w-full px-6 md:px-24 pointer-events-none">
           <motion.p
-            className="text-[#F0EEE6] font-darker font-semibold text-[62px] leading-[1.05] text-center tracking-tighter"
+            className="text-[#F0EEE6] font-darker font-semibold text-[22px] sm:text-[28px] md:text-[34px] lg:text-[62px] leading-[1.1] md:leading-[1.05] text-center tracking-tighter"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}

@@ -20,16 +20,16 @@ const Footer: React.FC = () => {
 
       <div className="max-w-[1800px] mx-auto relative z-10 w-full flex flex-col justify-between h-full min-h-[300px] md:min-h-[400px]">
         {/* Top Section */}
-        <div className="flex flex-col md:flex-row justify-between gap-12">
+        <div className="flex flex-col items-center md:items-start md:flex-row justify-between gap-16 md:gap-12">
           {/* Left Side: Mission */}
-          <div className="max-w-md lg:max-w-lg">
-            <h2 className="font-darker text-[22px] md:text-[28px] lg:text-[32px] leading-[1.1] font-medium text-white/90 tracking-tight">
+          <div className="max-w-md lg:max-w-lg text-center md:text-left">
+            <h2 className="font-darker text-[22px] md:text-[28px] lg:text-[32px] leading-[1.1] font-medium text-[#F0EEE6] tracking-tight">
               AI Research & Products To Make Safe General Intelligence For Everyone.
             </h2>
           </div>
 
           {/* Right Side: Links */}
-          <div className="flex gap-16 md:gap-24 lg:gap-32">
+          <div className="flex flex-row gap-12 sm:gap-24 md:gap-24 lg:gap-32 items-start text-left">
             {/* Products Column */}
             <div>
               <h3 className="font-inter text-[18px] mb-8 text-[#F0EEE6] font-medium">Products</h3>
@@ -78,9 +78,9 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-20">
+        <div className="mt-20 text-center md:text-left">
           <p className="font-inter text-sm text-white/30">
-            © 2024 Singulariti
+            © 2026 Singulariti
           </p>
         </div>
       </div>

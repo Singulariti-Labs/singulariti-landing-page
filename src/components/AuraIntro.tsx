@@ -40,7 +40,7 @@ const AuraIntro: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-[#141413] font-darker font-semibold text-[32px] md:text-[42px] leading-tight mb-8"
+            className="text-[#141413] font-darker font-semibold text-[28px] sm:text-[34px] md:text-[38px] lg:text-[42px] leading-tight mb-8"
           >
             Introducing
           </motion.h3>
@@ -80,7 +80,7 @@ const AuraIntro: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="text-[#F0EEE6] font-inter font-medium text-[64px] md:text-[108px] md:-mb-1 leading-none mb-8"
+                className="text-[#F0EEE6] font-inter font-medium text-[48px] sm:text-[64px] md:text-[80px] lg:text-[108px] md:-mb-1 leading-none mb-8"
               >
                 Aura
               </motion.h2>
@@ -88,7 +88,7 @@ const AuraIntro: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-[#DCCA87] font-darker font-medium text-[22px] md:text-[42px] leading-tight mb-14 relative top-12"
+                className="text-[#DCCA87] font-darker font-medium text-[20px] sm:text-[28px] md:text-[36px] lg:text-[42px] leading-tight mb-14 relative top-12"
               >
                 First Step Towards Intelligent Systems
               </motion.p>
@@ -109,7 +109,7 @@ const AuraIntro: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="text-[#F0EEE6] font-inter font-medium text-[38px] md:text-[48px] leading-[1.05] tracking-tight"
+                className="text-[#F0EEE6] font-inter font-medium text-[32px] sm:text-[38px] md:text-[42px] lg:text-[48px] leading-[1.05] tracking-tight"
               >
                 Mission
               </motion.h2>
@@ -117,7 +117,7 @@ const AuraIntro: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-[#D4A820]/80 font-darker text-[22px] md:text-[28px] leading-[1.6] font-semibold max-w-[1240px]"
+                className="text-[#D4A820]/80 font-darker text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] leading-[1.6] font-semibold max-w-[1240px]"
               >
                 AURA is where we begin. But the question driving Singulariti is much larger, what does it take for AI to be present in every moment of a person's life, across every surface, with complete context, working for you as only something that truly knows you can?
               </motion.p>

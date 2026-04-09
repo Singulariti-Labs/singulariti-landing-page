@@ -30,11 +30,10 @@ const About = () => {
           Singulariti
         </h1>
       </div>
-
       {/* Content Section */}
-      <div className="flex-1 flex items-start justify-center !px-4 !pb-24 !pt-4 relative z-10">
-        <div className="w-full max-w-[50%]">
-          <div className="!space-y-8 text-black text-base md:text-xl font-medium leading-relaxed">
+      <div className="flex-1 flex items-start justify-center px-6 md:px-12 lg:px-4 pb-24 pt-4 relative z-10">
+        <div className="w-full max-w-full md:max-w-[85%] lg:max-w-[60%] xl:max-w-[50%]">
+          <div className="space-y-6 md:space-y-8 text-black text-[16px] sm:text-[18px] md:text-xl font-medium leading-relaxed font-darker">
             <p>
               Every great leap in human history began with a new way to connect — not just with each other,
               but with the machines we create.

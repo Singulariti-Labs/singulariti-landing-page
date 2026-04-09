@@ -33,21 +33,21 @@ const Section3: React.FC = () => {
     <section className="relative w-full py-24 bg-transparent px-6 overflow-visible">
       <div className="max-w-[1440px] mx-auto">
         {/* Section Heading */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 lg:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="text-[#141413] font-inter font-medium text-[42px] md:text-[48px] leading-[1.05] tracking-tighter"
+            className="text-[#141413] font-inter font-medium text-[24px] sm:text-[30px] md:text-[36px] lg:text-[48px] leading-[1.1] lg:leading-[1.05] tracking-tighter px-4"
           >
-            The Model Is Ready <br />
+            The Model Is Ready <br className="hidden lg:block" />
             The World Around It Isn't
           </motion.h2>
         </div>
 
         {/* Problems Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {problems.map((problem, i) => (
             <motion.div
               key={i}

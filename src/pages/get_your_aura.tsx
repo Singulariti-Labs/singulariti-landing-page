@@ -11,8 +11,8 @@ const GetYourAuraPage: React.FC = () => {
     return (
         <div className="flex flex-col min-h-screen bg-[#F0EEE6] overflow-hidden relative">
 
-            {/* Layer 1: Background Animated Logo */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            {/* Layer 1: Background Animated Logo - Hidden on mobile/tablets */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 hidden lg:flex">
                 <motion.img
                     initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
                     animate={{
@@ -32,14 +32,14 @@ const GetYourAuraPage: React.FC = () => {
             </div>
 
             {/* Layer 2: Blurred Ellipse */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 w-full">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 w-full overflow-hidden">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="w-[960px] h-[615px] bg-[#F0EEE6] rounded-full flex-shrink-0"
+                    className="w-[80%] max-w-[750px] aspect-[1.56/1] lg:h-[650px] bg-[#F0EEE6] rounded-full flex-shrink-0 blur-[120px]"
                     style={{
-                        filter: "blur(100px)",
+                        filter: "blur(40px) sm:blur(60px) md:blur(100px)",
                     }}
                 />
             </div>
@@ -57,21 +57,21 @@ const GetYourAuraPage: React.FC = () => {
                 >
                     {/* Aura Title */}
                     <h1
-                        className="text-[#141413] text-[120px] font-medium leading-none tracking-tighter mb-10"
+                        className="text-[#141413] text-[40px] sm:text-[54px] md:text-[72px] lg:text-[120px] font-medium leading-none tracking-tighter mb-6 lg:mb-10"
                         style={{ fontFamily: "'Inter', sans-serif" }}
                     >
                         Aura
                     </h1>
 
                     {/* Subheading */}
-                    <div className="mb-20 space-y-1">
+                    <div className="mb-12 lg:mb-20 space-y-2 lg:space-y-1">
                         <p
-                            className="text-[#7A3220] text-[28px] font-medium leading-[1.1] tracking-tight max-w-[1000px] mx-auto font-darker"
+                            className="text-[#7A3220] text-[15px] sm:text-[18px] md:text-[22px] lg:text-[28px] font-medium leading-[1.3] lg:leading-[1.1] tracking-tight max-w-[900px] mx-auto font-darker px-4"
                         >
                             Personal AI That Wraps Entire Operating System With Agentic Layer
                         </p>
                         <p
-                            className="text-[#7A3220] text-[28px] font-medium leading-[1.1] tracking-tight max-w-[1000px] mx-auto font-darker"
+                            className="text-[#7A3220] text-[15px] sm:text-[18px] md:text-[22px] lg:text-[28px] font-medium leading-[1.3] lg:leading-[1.1] tracking-tight max-w-[900px] mx-auto font-darker px-4"
                         >
                             AI That works anywhere with any application on your devices
                         </p>
