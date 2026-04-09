@@ -84,21 +84,6 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      {/* ===== BOTTOM ELLIPSE (half visible) ===== */}
-      <div className="absolute bottom-[-25%] left-1/2 -translate-x-1/2 w-[110vw] aspect-[16/5] rounded-[50%] blur-[60px] opacity-80"
-        style={{
-          background:
-            'linear-gradient(90deg, #B04AFF 0%, rgb(125, 62, 225) 50%, #B04AFF 100%)',
-        }}
-      />
-
-      {/* ===== full-bleed glass footer ===== */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-[3vh] lg:h-[5vh] flex items-center justify-center bg-white/10 backdrop-blur-[200px] border-t border-white/20 shadow-lg">
-        <p className="text-black font-medium text-md lg:text-lg tracking-wide drop-shadow-sm">
-          © 2026 Singulariti
-        </p>
-      </div>
     </div>
   );
 };

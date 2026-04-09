@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import moonImg from "../assets/moon.png";
 
 const AuraIntro: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const navigate = useNavigate();
 
   // 1. Precise Scroll Trigger Logic:
   // Offset ["start 100%", "start 85%"] ensures:
@@ -92,6 +94,7 @@ const AuraIntro: React.FC = () => {
               </motion.p>
               <motion.button
                 ref={buttonRef}
+                onClick={() => navigate('/get-your-aura')}
                 className="bg-[#E5E3DB] text-[#141413] px-10 py-1.5 rounded-[5px] font-inter font-medium text-[17px] transition-colors hover:bg-white relative top-8"
               >
                 Explore

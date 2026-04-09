@@ -37,13 +37,13 @@ const Footer: React.FC = () => {
                 <li>
                   <button
                     onClick={() => handleLinkClick("/get-your-aura")}
-                    className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left"
+                    className="font-inter text-small text-[14px] text-white/60 hover:text-white transition-all duration-300 text-left"
                   >
                     Aura
                   </button>
                 </li>
                 <li>
-                  <span className="font-inter text-base text-white/20 cursor-default">Coming Soon</span>
+                  <span className="font-inter text-small text-[14px] text-white/20 cursor-default">Coming Soon</span>
                 </li>
               </ul>
             </div>
@@ -55,22 +55,22 @@ const Footer: React.FC = () => {
                 <li>
                   <button
                     onClick={() => handleLinkClick("/about")}
-                    className="font-inter text-base text-[#F0EEE6]/60 hover:text-[#F0EEE6] transition-all duration-300 text-left"
+                    className="font-inter text-small text-[14px] text-[#F0EEE6]/60 hover:text-[#F0EEE6] transition-all duration-300 text-left"
                   >
                     About
                   </button>
                 </li>
                 <li>
-                  <button className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left">Research</button>
+                  <button className="font-inter text-small text-[14px] text-white/60 hover:text-white transition-all duration-300 text-left">Research</button>
                 </li>
                 <li>
-                  <button className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left">Careers</button>
+                  <button className="font-inter text-small text-[14px] text-white/60 hover:text-white transition-all duration-300 text-left">Careers</button>
                 </li>
                 <li>
-                  <button className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left">Safety</button>
+                  <button className="font-inter text-small text-[14px] text-white/60 hover:text-white transition-all duration-300 text-left">Safety</button>
                 </li>
                 <li>
-                  <button className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left">Help</button>
+                  <button className="font-inter text-small text-[14px] text-white/60 hover:text-white transition-all duration-300 text-left">Help</button>
                 </li>
               </ul>
             </div>
