@@ -1,92 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap');
+@import "./App.css";
 @import "tailwindcss";
 
 /* ---------- Base font & rendering ---------- */
-:root {
-  font-family: "Darker Grotesque", system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@layer base {
+  :root {
+    --bg-primary: #F0EEE6;
+    --text-primary: #141413;
+    --accent-primary: #141413;
+    --font-inter: "Inter", system-ui, sans-serif;
+    --font-darker: "Darker Grotesque", system-ui, sans-serif;
 
-  color-scheme: light dark;
-  color: rgba(33, 53, 71, 1);
-  background-color: white;
+    font-family: var(--font-inter);
+    line-height: 1.5;
+    font-weight: 400;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
 
-/* ---------- Responsive section padding ---------- */
-section {
-  padding-left: 1rem;  /* px-4 */
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  section {
-    padding-left: 2rem; /* sm:px-8 */
-    padding-right: 2rem;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-@media (min-width: 1024px) {
-  section {
-    padding-left: 4rem; /* lg:px-16 */
-    padding-right: 4rem;
-  }
-}
+/* ---------- Global Layout Rules ---------- */
+/* 
+- Mobile 88% Content (6% margin)
+- Tablet 82% Content (9% margin)
+- Small Desktop 80% Content (10% margin)
+- Large Desktop 75% Content (12.5% margin)
+- Ultra Wide (1600px+) 70% Content (15% margin)
+*/
 
-@media (min-width: 1280px) {
-  section {
-    padding-left: 4rem; /* xl:px-16 */
-    padding-right: 4rem;
+@layer components {
+  .content-container {
+    width: 88%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .content-container {
+      width: 82%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .content-container {
+      width: 90%;
+      max-width: 1800px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .content-container {
+      width: 80%;
+    }
+  }
+
+  @media (min-width: 2000px) {
+    .content-container {
+      width: 70%;
+    }
+  }
+
+  @media (min-width: 2500px) {
+    .content-container {
+      width: 65%;
+    }
   }
 }
 
 /* ---------- Global reset & scrolling behavior ---------- */
-html {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  min-width: 320px;
-  background-color: #ffffff;
-  /* ✅ allow horizontal overflow at html level, will be clipped by body */
-  overflow-x: visible;
+@layer base {
+  html {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    min-width: 320px;
+    background-color: var(--bg-primary);
+    /* ✅ allow horizontal overflow at html level, will be clipped by body */
+    overflow-x: visible;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    min-width: 320px;
+    background-color: var(--bg-primary);
+
+    /* ✅ improve trackpad scroll reliability */
+    touch-action: pan-y;
+
+    /* ✅ prevent sideways scroll */
+    overflow-x: hidden;
+  }
+
+  /* ✅ Make sure root does not hijack scroll */
+  #root,
+  .App {
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    /* don’t force 100vh unless you really want it */
+    overflow: visible;
+    /* let scroll bubble up to body */
+  }
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  min-width: 320px;
-  background-color: #ffffff;
+@layer components {
+  /* ---------- Typography ---------- */
+  /* h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  } */
 
-  /* ✅ improve trackpad scroll reliability */
-  touch-action: pan-y;
+  .font-inter {
+    font-family: var(--font-inter);
+  }
 
-  /* ✅ prevent sideways scroll */
-  overflow-x: hidden;
+  .font-darker {
+    font-family: var(--font-darker);
+  }
 }
-
-/* ✅ Make sure root does not hijack scroll */
-#root,
-.App {
-  width: 100%;
-  min-height: 100%;
-  height: auto;         /* don’t force 100vh unless you really want it */
-  overflow: visible;    /* let scroll bubble up to body */
-}
-
-/* ---------- Typography ---------- */
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-} */
 
 /* ---------- Light mode tweak ---------- */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  @media (prefers-color-scheme: light) {
+    :root {
+      background-color: #F0EEE6;
+    }
   }
 }

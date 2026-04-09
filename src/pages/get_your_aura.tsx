@@ -1,98 +1,105 @@
 import React from "react";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import auraBgLogo from "../assets/aura_bg_logo.png";
+import auraAnimatedLogo from "../assets/aura_animated_logo.png";
 import windowsLogo from "../assets/windows_logo.png";
 import appleLogo from "../assets/apple_logo.png";
-import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const GetYourAuraPage: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
-            <Navbar />
+        <div className="flex flex-col min-h-screen bg-[#F0EEE6] overflow-hidden relative">
 
-            {/* Main Content Area */}
-            <main className="flex-grow relative w-full flex flex-col items-center justify-center pt-32 md:pt-48 pb-16 md:pb-24 px-4 overflow-visible">
-
-                {/* Background Logo */}
-                <div
-                    className="absolute pointer-events-none z-0"
-                    style={{
-                        left: '10%',
-                        top: '50%',
-                        transform: 'translate(-25%, -50%)', // Positioned towards the left
-                        width: 'min(100vw, 800px)',
-                        height: 'auto',
+            {/* Layer 1: Background Animated Logo - Hidden on mobile/tablets */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 hidden lg:flex">
+                <motion.img
+                    initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
+                    animate={{
+                        opacity: 1,
+                        scale: 1,
+                        rotate: 360
                     }}
-                >
-                    <img src={auraBgLogo} alt="" className="w-full h-auto" />
-                </div>
+                    transition={{
+                        opacity: { duration: 1.5, ease: "easeOut" },
+                        scale: { duration: 1.5, ease: "easeOut" },
+                        rotate: { duration: 60, repeat: Infinity, ease: "linear" }
+                    }}
+                    src={auraAnimatedLogo}
+                    alt=""
+                    className="w-full max-w-[1200px] h-auto object-contain"
+                />
+            </div>
+
+            {/* Layer 2: Blurred Ellipse */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 w-full overflow-hidden">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.2 }}
+                    className="w-[80%] max-w-[750px] aspect-[1.56/1] lg:h-[650px] bg-[#F0EEE6] rounded-full flex-shrink-0 blur-[120px]"
+                    style={{
+                        filter: "blur(40px) sm:blur(60px) md:blur(100px)",
+                    }}
+                />
+            </div>
+
+
+            {/* Layer 3: Main Content */}
+            <main className="relative z-20 flex-grow w-full flex flex-col items-center justify-center px-6 -mt-10">
 
                 {/* Content Container */}
-                <div className="relative z-10 flex flex-col items-center w-full max-w-4xl mx-auto h-[600px] justify-center">
-                    <div className="flex flex-col items-center w-full">
-                        {/* Header Section */}
-                        <div className="flex flex-col items-center !md:mt-6 !mt-8">
-                            <h2 className="text-2xl md:text-4xl lg:text-4xl font-semibold text-black drop-shadow-[0_4px_2px_rgba(0,0,0,0.25)]">
-                                Get Your
-                            </h2>
-                            <h1 className="text-5xl md:text-7xl lg:text-[140px] font-medium text-black leading-none !mb-4 !md:-mt-6 !lg:-mt-8 drop-shadow-[0_6px_2px_rgba(0,0,0,0.25)]">
-                                Aura
-                            </h1>
-                        </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="flex flex-col items-center text-center w-full max-w-5xl"
+                >
+                    {/* Aura Title */}
+                    <h1
+                        className="text-[#141413] text-[40px] sm:text-[54px] md:text-[72px] lg:text-[120px] font-medium leading-none tracking-tighter mb-6 lg:mb-10"
+                        style={{ fontFamily: "'Inter', sans-serif" }}
+                    >
+                        Aura
+                    </h1>
 
-                        {/* Download Sections Container */}
-                        <div className="flex flex-col items-center gap-6 md:gap-12 w-full">
-
-                            {/* Windows Section */}
-                            <div className="flex flex-col items-center">
-                                {/* Windows Icon */}
-                                <img
-                                    src={windowsLogo}
-                                    alt="Windows Logo"
-                                    className="w-16 h-16 md:w-20 md:h-20 !mb-6 !md:mb-10 object-contain drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
-                                />
-
-                                {/* Download Button */}
-                                <Button
-                                    onClick={() => navigate('/notify-me', { state: { system: "windows" } })}
-                                    className="bg-[#F5F5ED] hover:bg-[#EBEBE0] text-black !px-10 !md:px-14 !py-1 !md:py-1 rounded-[15px] md:rounded-[20px] text-xl md:text-2xl font-semibold shadow-[0_8px_10px_0_rgba(0,0,0,0.25)] transition-all h-auto"
-                                >
-                                    Download
-                                </Button>
-                            </div>
-
-                            {/* MacOS Section */}
-                            <div className="flex flex-col items-center">
-                                <div className="flex items-center gap-2 mb-4 md:mb-6">
-                                    <img
-                                        src={appleLogo}
-                                        alt="Apple Logo"
-                                        className="w-4 h-4 md:w-6 md:h-6 object-contain"
-                                    />
-                                    <span className="text-lg md:text-lg font-semibold text-black text-center !py-2">
-                                        For MacOS Coming Soon
-                                    </span>
-                                </div>
-
-                                {/* Notify Me Button */}
-                                <Button
-                                    onClick={() => navigate('/notify-me', { state: { system: "macos" } })}
-                                    className="bg-[#F5F5ED] hover:bg-[#EBEBE0] text-black !px-8 !md:px-10 !py-1 !md:py-1 rounded-[12px] md:rounded-[15px] text-base md:text-lg font-semibold shadow-[0_4px_2px_0_rgba(0,0,0,0.25)] transition-all h-auto"
-                                >
-                                    Notify Me
-                                </Button>
-                            </div>
-
-                        </div>
+                    {/* Subheading */}
+                    <div className="mb-12 lg:mb-20 space-y-2 lg:space-y-1">
+                        <p
+                            className="text-[#7A3220] text-[15px] sm:text-[18px] md:text-[22px] lg:text-[28px] font-medium leading-[1.3] lg:leading-[1.1] tracking-tight max-w-[900px] mx-auto font-darker px-4"
+                        >
+                            Personal AI That Wraps Entire Operating System With Agentic Layer
+                        </p>
+                        <p
+                            className="text-[#7A3220] text-[15px] sm:text-[18px] md:text-[22px] lg:text-[28px] font-medium leading-[1.3] lg:leading-[1.1] tracking-tight max-w-[900px] mx-auto font-darker px-4"
+                        >
+                            AI That works anywhere with any application on your devices
+                        </p>
                     </div>
-                </div>
+
+                    {/* Download Buttons */}
+                    <div className="flex flex-col md:flex-row items-center gap-5 mt-4">
+                        {/* Windows Button */}
+                        <motion.button
+                            onClick={() => navigate('/notify-me', { state: { system: "windows" } })}
+                            className="group bg-[#141413] hover:bg-white/70 text-[#F0EEE6] hover:text-[#141413] pl-6 pr-8 py-1.5 rounded-[10px] flex items-center gap-3 min-w-[260px] justify-center transition-all duration-300 shadow-lg hover:shadow-black/20"
+                        >
+                            <img src={windowsLogo} alt="" className="w-5 h-5 invert group-hover:invert-0 transition-all duration-300" />
+                            <span className="text-xl font-medium">Download</span>
+                        </motion.button>
+
+                        {/* Mac Button */}
+                        <motion.button
+                            onClick={() => navigate('/notify-me', { state: { system: "macos" } })}
+                            className="group bg-[#141413] hover:bg-white/70 text-[#F0EEE6] hover:text-[#141413] pl-6 pr-8 py-1.5 rounded-[10px] flex items-center gap-3 min-w-[260px] justify-center transition-all duration-300 shadow-lg hover:shadow-black/20"
+                        >
+                            <img src={appleLogo} alt="" className="w-5 h-5 invert group-hover:invert-0 transition-all duration-300" />
+                            <span className="text-xl font-medium">Download</span>
+                        </motion.button>
+                    </div>
+                </motion.div>
             </main>
 
-            <Footer />
         </div>
     );
 };

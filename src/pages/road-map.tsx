@@ -22,14 +22,14 @@ const RoadMap: React.FC = () => {
       </section>
 
       {/* ===== Timeline Section ===== */}
-      <section className="relative w-full !py-16 bg-white overflow-hidden">
+      <section className="relative w-full py-16 bg-[#F0EEE6] overflow-hidden">
         {/* ===== 1st ===== */}
         <div className="max-w-5xl mx-auto !px-6">
-          <div className="flex !mt-10">
+          <div className="flex mt-10">
             {/* Left side: Circle + Line */}
             <div className="flex flex-col">
               {/* blurred wrapper */}
-              <div className="!blur-[1px]">
+              <div className="blur-[1px]">
                 <div
                   className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0"
                   style={{

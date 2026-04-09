@@ -2,33 +2,34 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NotifyMeForm from "../components/NotifyMeForm";
 import auraBgLogo from "../assets/aura_bg_logo.png";
+import { motion } from "framer-motion";
 
 const NotifyMePage: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex flex-col h-screen bg-white relative overflow-y-auto overflow-x-hidden">
+        <div className="flex flex-col h-screen bg-[#F0EEE6] relative overflow-hidden">
             {/* Background Logo - Exact same position as in get_your_aura.tsx */}
             <div
-                className="absolute pointer-events-none z-0"
+                className="absolute pointer-events-none z-0 opacity-10"
                 style={{
-                    left: '10%',
+                    left: '0%',
                     top: '50%',
-                    transform: 'translate(-25%, -50%)',
+                    transform: 'translate(-20%, -50%)',
                     width: 'min(100vw, 800px)',
-                    height: 'auto',
                 }}
             >
-                <img src={auraBgLogo} alt="" className="w-full h-auto" />
+                <img src={auraBgLogo} alt="" className="w-full h-auto grayscale" />
             </div>
-
-            {/* Blur Backdrop Layer */}
-            <div className="absolute inset-0 z-10 bg-white/10 backdrop-blur-[6px]" />
 
             {/* Content Container - Full Page */}
-            <div className="relative z-20 flex flex-col h-full w-full">
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="relative z-20 flex flex-col h-full w-full"
+            >
                 <NotifyMeForm onClose={() => navigate('/get-your-aura')} />
-            </div>
+            </motion.div>
         </div>
     );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="relative min-h-screen w-full flex flex-col bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50 overflow-hidden">
+    <div className="relative min-h-screen w-full flex flex-col bg-[#F0EEE6] overflow-hidden">
       {/* Back button */}
       <button
         onClick={() => window.history.back()}
@@ -30,11 +30,10 @@ const About = () => {
           Singulariti
         </h1>
       </div>
-
       {/* Content Section */}
-      <div className="flex-1 flex items-start justify-center !px-4 !pb-24 !pt-4 relative z-10">
-        <div className="w-full max-w-[50%]">
-          <div className="!space-y-8 text-black text-base md:text-xl font-medium leading-relaxed">
+      <div className="flex-1 flex items-start justify-center px-6 md:px-12 lg:px-4 pb-24 pt-4 relative z-10">
+        <div className="w-full max-w-full md:max-w-[85%] lg:max-w-[60%] xl:max-w-[50%]">
+          <div className="space-y-6 md:space-y-8 text-black text-[16px] sm:text-[18px] md:text-xl font-medium leading-relaxed font-darker">
             <p>
               Every great leap in human history began with a new way to connect — not just with each other,
               but with the machines we create.
@@ -83,21 +82,6 @@ const About = () => {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* ===== BOTTOM ELLIPSE (half visible) ===== */}
-      <div className="absolute bottom-[-25%] left-1/2 -translate-x-1/2 w-[110vw] aspect-[16/5] rounded-[50%] blur-[60px] opacity-80"
-        style={{
-          background:
-            'linear-gradient(90deg, #B04AFF 0%, rgb(125, 62, 225) 50%, #B04AFF 100%)',
-        }}
-      />
-
-      {/* ===== full-bleed glass footer ===== */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-[3vh] lg:h-[5vh] flex items-center justify-center bg-white/10 backdrop-blur-[200px] border-t border-white/20 shadow-lg">
-        <p className="text-black font-medium text-md lg:text-lg tracking-wide drop-shadow-sm">
-          © 2026 Singulariti
-        </p>
       </div>
     </div>
   );
