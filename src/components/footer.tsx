@@ -4,25 +4,85 @@ import { useNavigate } from "react-router-dom";
 const Footer: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleJoinWaitlistClick = () => {
-    navigate("/get-your-aura");
+  const handleLinkClick = (path: string) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="w-full bg-[#F0EEE6] border-t border-[#141413]/10 px-6 py-10">
-      <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 font-medium">
-        {/* Left – CTA */}
-        <button
-          onClick={handleJoinWaitlistClick}
-          className="bg-[#141413] text-[#F0EEE6] px-8 py-3 rounded-full text-lg font-medium hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-        >
-          Get Your Aura
-        </button>
+    <footer className="w-full bg-[#141413] text-white py-20 px-6 md:px-12 lg:px-20 overflow-hidden relative min-h-[400px] md:min-h-[500px] flex items-center justify-center">
+      {/* Huge Background Text (Centered) */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+        <h1 className="font-darker text-[15vw] md:text-[18vw] leading-none font-bold text-white/[0.04] whitespace-nowrap">
+          Singulariti.
+        </h1>
+      </div>
 
-        {/* Right – Copyright */}
-        <p className="text-[#141413]/50 text-sm md:text-base">
-          © 2026 Singulariti
-        </p>
+      <div className="max-w-[1800px] mx-auto relative z-10 w-full flex flex-col justify-between h-full min-h-[300px] md:min-h-[400px]">
+        {/* Top Section */}
+        <div className="flex flex-col md:flex-row justify-between gap-12">
+          {/* Left Side: Mission */}
+          <div className="max-w-md lg:max-w-lg">
+            <h2 className="font-darker text-[22px] md:text-[28px] lg:text-[32px] leading-[1.1] font-medium text-white/90 tracking-tight">
+              AI Research & Products To Make Safe General Intelligence For Everyone.
+            </h2>
+          </div>
+
+          {/* Right Side: Links */}
+          <div className="flex gap-16 md:gap-24 lg:gap-32">
+            {/* Products Column */}
+            <div>
+              <h3 className="font-inter text-[18px] mb-8 text-[#F0EEE6] font-medium">Products</h3>
+              <ul className="flex flex-col gap-4">
+                <li>
+                  <button
+                    onClick={() => handleLinkClick("/get-your-aura")}
+                    className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left"
+                  >
+                    Aura
+                  </button>
+                </li>
+                <li>
+                  <span className="font-inter text-base text-white/20 cursor-default">Coming Soon</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company Column */}
+            <div>
+              <h3 className="font-inter text-[18px] mb-8 text-[#F0EEE6] font-medium">Company</h3>
+              <ul className="flex flex-col gap-4">
+                <li>
+                  <button
+                    onClick={() => handleLinkClick("/about")}
+                    className="font-inter text-base text-[#F0EEE6]/60 hover:text-[#F0EEE6] transition-all duration-300 text-left"
+                  >
+                    About
+                  </button>
+                </li>
+                <li>
+                  <button className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left">Research</button>
+                </li>
+                <li>
+                  <button className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left">Careers</button>
+                </li>
+                <li>
+                  <button className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left">Safety</button>
+                </li>
+                <li>
+                  <button className="font-inter text-base text-white/60 hover:text-white transition-all duration-300 text-left">Help</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-20">
+          <p className="font-inter text-sm text-white/30">
+            © 2024 Singulariti
+          </p>
+        </div>
       </div>
     </footer>
   );
