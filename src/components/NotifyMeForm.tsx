@@ -45,7 +45,7 @@ const NotifyMeForm: React.FC<NotifyMeFormProps> = ({ onClose }) => {
             setStep([3, 1]);
 
             if (formData.system.toLowerCase() === "windows") {
-                const downloadUrl = "https://github.com/Singulariti-Labs/Aura_Release/releases/download/0.1.1-beta/Aura.0.1.1-beta.msi";
+                const downloadUrl = "https://github.com/Singulariti-Labs/Aura_Release/releases/download/0.1.2-beta/Aura-Setup-0.1.2-beta-x64.exe";
                 window.location.href = downloadUrl;
             }
         } catch (err: any) {
