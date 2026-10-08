@@ -135,7 +135,200 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@property --aura-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@layer components {
+  .aura-gradient-border {
+    --aura-border-angle: 0deg;
+    background:
+      linear-gradient(#ffffff, #ffffff) padding-box,
+      conic-gradient(from var(--aura-border-angle),
+        #663491 0%,
+        #b798d5 15%,
+        #eee7f7 29%,
+        #ffffff 42%,
+        #ddcff0 57%,
+        #9b6fc0 72%,
+        #ffffff 87%,
+        #5e2c88 100%) border-box;
+    animation: aura-border-clockwise 16s linear infinite;
+  }
+
+  .aura-logo-lockup {
+    mix-blend-mode: multiply;
+    filter: contrast(190%) brightness(112%);
+  }
+
+  .product-card-gradient {
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+  }
+
+  .product-card-gradient--aura {
+    background-image:
+      radial-gradient(ellipse 72% 58% at 102% -8%, rgb(177 112 244 / 55%) 0%, rgb(214 175 251 / 32%) 34%, transparent 68%),
+      radial-gradient(ellipse 78% 72% at -8% 108%, rgb(144 73 230 / 64%) 0%, rgb(185 124 246 / 40%) 32%, rgb(225 199 253 / 20%) 56%, transparent 76%),
+      linear-gradient(145deg, #ffffff 18%, #fefcff 52%, #fbf6ff 100%);
+  }
+
+  .product-card-gradient--a2i {
+    background-image:
+      radial-gradient(ellipse 92% 72% at -8% -6%, rgb(171 105 239 / 46%) 0%, rgb(197 146 246 / 30%) 30%, rgb(226 204 252 / 14%) 52%, transparent 74%),
+      radial-gradient(ellipse 96% 76% at 108% 108%, rgb(157 86 232 / 48%) 0%, rgb(194 139 246 / 31%) 31%, rgb(225 199 252 / 15%) 54%, transparent 75%),
+      radial-gradient(ellipse 86% 38% at 50% 104%, rgb(190 137 246 / 18%) 0%, transparent 72%),
+      linear-gradient(145deg, #fcf8ff 0%, #ffffff 40%, #ffffff 62%, #faf5ff 100%);
+  }
+
+  .product-card-gradient--hardware {
+    background-image:
+      radial-gradient(circle at -3% -18%, transparent 0%, transparent 22%, rgb(185 125 246 / 30%) 32%, rgb(216 177 251 / 18%) 42%, transparent 57%),
+      radial-gradient(circle at 106% 114%, transparent 0%, transparent 20%, rgb(160 87 235 / 38%) 31%, rgb(204 157 249 / 23%) 44%, transparent 61%),
+      radial-gradient(ellipse 48% 70% at 98% 92%, rgb(193 139 247 / 25%) 0%, transparent 65%),
+      linear-gradient(135deg, #fcf8ff 0%, #ffffff 34%, #ffffff 66%, #faf5ff 100%);
+  }
+
+  .a2i-status-rotator {
+    position: relative;
+    display: block;
+    width: 9.25rem;
+    height: 1.25rem;
+    overflow: hidden;
+  }
+
+  .a2i-status-line {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    white-space: nowrap;
+    will-change: transform, opacity;
+  }
+
+  .a2i-status-line--progress {
+    animation: a2i-status-progress 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+
+  .a2i-status-line--soon {
+    animation: a2i-status-soon 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+
+  .a2i-typing-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.18rem;
+  }
+
+  .a2i-typing-dots>span {
+    width: 0.2rem;
+    height: 0.2rem;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.35;
+    animation: a2i-typing-dot 1.2s ease-in-out infinite;
+  }
+
+  .a2i-typing-dots>span:nth-child(2) {
+    animation-delay: 0.16s;
+  }
+
+  .a2i-typing-dots>span:nth-child(3) {
+    animation-delay: 0.32s;
+  }
+}
+
+@keyframes aura-border-clockwise {
+  to {
+    --aura-border-angle: 360deg;
+  }
+}
+
+@keyframes a2i-status-progress {
+
+  0%,
+  40% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50%,
+  90% {
+    transform: translateY(-125%);
+    opacity: 0;
+  }
+
+  90.01% {
+    transform: translateY(125%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes a2i-status-soon {
+
+  0%,
+  40% {
+    transform: translateY(125%);
+    opacity: 0;
+  }
+
+  50%,
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-125%);
+    opacity: 0;
+  }
+}
+
+@keyframes a2i-typing-dot {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+
+  30% {
+    transform: translateY(-0.12rem);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aura-gradient-border {
+    animation: none;
+  }
+
+  .a2i-status-line,
+  .a2i-typing-dots>span {
+    animation: none;
+  }
+
+  .a2i-status-line--progress {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .a2i-status-line--soon {
+    display: none;
   }
 }

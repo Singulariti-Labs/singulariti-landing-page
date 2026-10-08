@@ -1,0 +1,189 @@
+@property --arc-reveal {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --arc-clear {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.arc-sweep-animation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+  min-width: 25%;
+  /* Both orbits share a tangent 35% of the card height from the right edge. */
+  aspect-ratio: 7 / 20;
+  overflow: hidden;
+  background: #ffffff;
+  pointer-events: none;
+  /* One clock drives both the fill boundaries and their moving radius lines. */
+  animation: arc-sector-cycle 7s ease-in-out infinite;
+}
+
+.arc-sweep-animation__orbit,
+.arc-sweep-animation__sector,
+.arc-sweep-animation__axis {
+  position: absolute;
+  top: 50%;
+  /* Keep the tangent and its antialiased stroke safely inside the clip edge. */
+  right: -2px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+}
+
+.arc-sweep-animation__orbit {
+  z-index: 2;
+  border: 1px dashed rgb(33 33 33 / 22%);
+}
+
+.arc-sweep-animation__orbit--outer {
+  height: 210%;
+  /* Three times the inner diameter, with the same leftmost tangent point. */
+  transform: translate(83.333333%, -50%);
+}
+
+.arc-sweep-animation__orbit--inner,
+.arc-sweep-animation__sector,
+.arc-sweep-animation__axis {
+  height: 70%;
+}
+
+.arc-sweep-animation__sector {
+  z-index: 1;
+  /* Fade radially, keeping the animated sweep boundary aligned with its axis. */
+  background: radial-gradient(circle closest-side at 50% 50%,
+      rgb(221 207 240 / 14%) 0%,
+      rgb(221 207 240 / 18%) 15%,
+      rgb(183 152 213 / 28%) 30%,
+      rgb(155 111 192 / 42%) 45%,
+      rgb(155 111 192 / 56%) 60%,
+      rgb(155 111 192 / 62%) 70%,
+      rgb(102 52 145 / 58%) 76%,
+      rgb(183 152 213 / 46%) 82%,
+      rgb(221 207 240 / 32%) 88%,
+      rgb(221 207 240 / 18%) 93%,
+      rgb(221 207 240 / 6%) 97%,
+      rgb(221 207 240 / 0%) 100%);
+  filter: blur(1.4px);
+  -webkit-mask-image: conic-gradient(from 180deg,
+      transparent 0deg var(--arc-clear),
+      #000 var(--arc-clear) var(--arc-reveal),
+      transparent var(--arc-reveal) 360deg);
+  mask-image: conic-gradient(from 180deg,
+      transparent 0deg var(--arc-clear),
+      #000 var(--arc-clear) var(--arc-reveal),
+      transparent var(--arc-reveal) 360deg);
+}
+
+.arc-sweep-animation__axis {
+  z-index: 3;
+  opacity: 0;
+}
+
+.arc-sweep-animation__axis::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(to right, var(--product-purple-mid), var(--product-purple-soft));
+  box-shadow: 0 0 8px rgb(183 152 213 / 46%);
+  transform: translateY(-50%);
+}
+
+.arc-sweep-animation__axis::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--product-purple-soft), var(--product-purple-mid));
+  box-shadow:
+    0 0 5px 1px rgb(155 111 192 / 58%),
+    0 0 10px 2px rgb(183 152 213 / 38%);
+  transform: translate(-50%, -50%);
+}
+
+.arc-sweep-animation__axis--reveal {
+  transform: translate(50%, -50%) rotate(calc(var(--arc-reveal) - 90deg));
+  animation: arc-reveal-axis 7s linear infinite;
+}
+
+.arc-sweep-animation__axis--clear {
+  transform: translate(50%, -50%) rotate(calc(var(--arc-clear) - 90deg));
+  animation: arc-clear-axis 7s linear infinite;
+}
+
+@keyframes arc-sector-cycle {
+
+  0%,
+  14.285714% {
+    --arc-reveal: 0deg;
+    --arc-clear: 0deg;
+  }
+
+  42.857143%,
+  71.428571% {
+    --arc-reveal: 180deg;
+    --arc-clear: 0deg;
+  }
+
+  100% {
+    --arc-reveal: 180deg;
+    --arc-clear: 180deg;
+  }
+}
+
+/* Visibility changes never introduce extra easing segments into the geometry. */
+@keyframes arc-reveal-axis {
+
+  0%,
+  14.285714% {
+    opacity: 0;
+  }
+
+  14.4%,
+  42.857143% {
+    opacity: 1;
+  }
+
+  43%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes arc-clear-axis {
+
+  0%,
+  71.428571% {
+    opacity: 0;
+  }
+
+  71.55%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc-sweep-animation {
+    --arc-reveal: 180deg;
+    --arc-clear: 0deg;
+    animation: none;
+  }
+
+  .arc-sweep-animation__axis {
+    display: none;
+  }
+}

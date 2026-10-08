@@ -4,12 +4,8 @@ import HeroSection from './components/hero';
 import Navbar from './components/navbar';
 import Section2 from './components/section2';
 import Section3 from './components/section3';
-import AuraIntro from './components/AuraIntro';
-import FeaturesSection1 from './components/features_1';
-import FeaturesSection2 from './components/features_2';
-import FeaturesSection3 from './components/features_3';
-import FeaturesSection4 from './components/features_4';
-import OneLiner from './components/oneliner';
+import ProductJourney from './components/ProductJourney';
+import AuraCTA from './components/AuraCTA';
 import Footer from './components/footer';
 import JoinWaitlist from './pages/join';
 import RoadMap from './pages/road-map';
@@ -24,24 +20,31 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen bg-[#F0EEE6]">
       {!hideNavbarRoutes.includes(location.pathname) && (
-        <header className="sticky top-0 z-50 w-full bg-[#F0EEE6]">
+        <header className="nav-glass sticky top-0 z-50 w-full">
           <div className="content-container">
             <Navbar />
           </div>
         </header>
       )}
 
-      <main className="content-container flex-grow">
+      <main className={location.pathname === '/' ? 'w-full flex-grow' : 'content-container flex-grow'}>
         <Routes>
           {/* Home page */}
           <Route
             path="/"
             element={
               <>
-                <HeroSection />
-                <Section2 />
-                <Section3 />
-                <AuraIntro />
+                <div className="content-container">
+                  <HeroSection />
+                </div>
+                <div className="home-white-transition">
+                  <div className="content-container flow-root">
+                    <Section2 />
+                    <Section3 />
+                    <ProductJourney />
+                    <AuraCTA />
+                  </div>
+                </div>
               </>
             }
           />

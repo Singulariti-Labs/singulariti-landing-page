@@ -1,0 +1,89 @@
+.connection-animation {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 25%;
+  display: grid;
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  overflow: hidden;
+  border-left: 1px solid rgb(20 20 19 / 20%);
+  background: #ffffff;
+  pointer-events: none;
+}
+
+.connection-animation__row {
+  --meeting-point: 64%;
+  position: relative;
+  overflow: hidden;
+}
+
+.connection-animation__row--reverse {
+  --meeting-point: 36%;
+}
+
+.connection-animation__block {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(var(--origin));
+  animation: connection-lead 5.5s cubic-bezier(0.45, 0, 0.25, 1) infinite both;
+  animation-delay: var(--row-delay);
+}
+
+/* Square gradients keep a crisp contact edge and dissolve outwards. */
+.connection-animation__block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  aspect-ratio: 1;
+  filter: blur(1.4px);
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+.connection-animation__block--left {
+  --origin: 0%;
+}
+
+.connection-animation__block--left::before {
+  right: 100%;
+  background:
+    radial-gradient(ellipse at 100% 50%, rgb(221 207 240 / 68%), transparent 72%),
+    linear-gradient(to left, var(--product-purple-mid), rgb(155 111 192 / 48%) 32%, transparent 95%);
+  box-shadow: 0 0 22px rgb(183 152 213 / 42%);
+}
+
+.connection-animation__block--right {
+  --origin: 100%;
+  animation-name: connection-follow;
+}
+
+.connection-animation__block--right::before {
+  left: 0;
+  background:
+    radial-gradient(ellipse at 0% 50%, rgb(221 207 240 / 62%), transparent 72%),
+    linear-gradient(to right, var(--product-purple-mid), rgb(155 111 192 / 44%) 32%, transparent 95%);
+  box-shadow: 0 0 22px rgb(183 152 213 / 38%);
+}
+
+/* Rows 1 and 5 start together; row 3 follows after 1s. */
+/* Approach 1s, hold 1.5s, retreat 1s, then stay hidden for 2s.
+   The right square starts 0.5s after the left in every row. */
+@keyframes connection-lead {
+  0%, 63.636364%, 100% { transform: translateX(var(--origin)); opacity: 0; }
+  9.090909% { opacity: 1; }
+  18.181818%, 45.454545% { transform: translateX(var(--meeting-point)); opacity: 1; }
+}
+
+@keyframes connection-follow {
+  0%, 9.090909%, 63.636364%, 100% { transform: translateX(var(--origin)); opacity: 0; }
+  14.545455% { opacity: 1; }
+  18.181818%, 45.454545% { transform: translateX(var(--meeting-point)); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connection-animation__block {
+    animation: none;
+    transform: translateX(var(--meeting-point));
+    opacity: 0.8;
+  }
+}

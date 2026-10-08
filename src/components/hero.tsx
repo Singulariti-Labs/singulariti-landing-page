@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => {
     <section className="relative w-full h-[720px] flex flex-col items-center justify-center py-20 bg-transparent px-[4px]">
 
       {/* Background Orbits (Full Width Breakout) - Hidden on mobile/tablets per user request */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full pointer-events-none select-none overflow-hidden z-0 hidden lg:block">
+      <div className="absolute top-0 left-1/2 z-[1] hidden h-[calc(100%+19rem)] w-[100vw] -translate-x-1/2 overflow-hidden pointer-events-none select-none lg:block">
 
         {/* Anchored Orbit Container: This ensures the orbits stay centered relative to the layout and don't break on wider displays */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[5000px] h-full pointer-events-none">

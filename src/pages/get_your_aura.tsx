@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auraAnimatedLogo from "../assets/aura_animated_logo.png";
 import windowsLogo from "../assets/windows_logo.png";
 import appleLogo from "../assets/apple_logo.png";
@@ -7,6 +7,10 @@ import { motion } from "framer-motion";
 
 const GetYourAuraPage: React.FC = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }, []);
 
     return (
         <div className="flex flex-col min-h-screen bg-[#F0EEE6] overflow-hidden relative">

@@ -58,7 +58,10 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-1 text-[#141413]"
+          type="button"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMenuOpen}
+          className="md:hidden flex size-11 items-center justify-center rounded-full text-[#141413] transition-colors duration-200 hover:bg-white/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#141413]"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -72,7 +75,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-[#F0EEE6] px-6 py-6 flex flex-col gap-4 shadow-xl"
+            className="nav-glass-menu md:hidden absolute top-full left-0 right-0 px-6 py-6 flex flex-col gap-4"
           >
             <button
               onClick={handleHomeClick}
