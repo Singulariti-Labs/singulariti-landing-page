@@ -164,20 +164,20 @@ const ProblemCard: React.FC<{ problem: Problem; index: number }> = ({
     index === 0 ? contextMetric : index === 1 ? processMetric : isolationMetric;
 
   const cardCopy = (
-    <div className="max-w-[34rem] pb-1">
-      <h3 className="max-w-[18ch] font-inter text-[clamp(1.55rem,2.35vw,2.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-[#141413]">
+    <div className="relative z-20 max-w-[34rem] pb-1 sm:static sm:z-auto">
+      <h3 className="max-w-[18ch] font-inter text-[1.25rem] font-medium leading-[1.08] tracking-[-0.02em] text-[#141413] sm:text-[clamp(1.55rem,2.35vw,2.5rem)] sm:leading-[1.05]">
         <span className="problem-title-highlight">{problem.highlight}</span>
         {problem.title.slice(problem.highlight.length)}
       </h3>
-      <p className="mt-6 max-w-[48ch] font-darker text-[19px] font-medium leading-[1.5] text-[#141413] xl:text-[22px]">
+      <p className="mt-4 max-w-[48ch] font-darker text-[16px] font-medium leading-[1.45] text-[#141413] sm:mt-6 sm:text-[19px] sm:leading-[1.5] xl:text-[22px]">
         {problem.description}
       </p>
     </div>
   );
 
   return (
-    <article className="relative h-full w-full border border-[#141413]/20 bg-white">
-      <div className="flex h-full w-3/4 flex-col justify-between gap-16 p-8 sm:p-10 xl:p-14">
+    <article className="relative isolate h-full w-full overflow-hidden border border-[#141413]/20 bg-white sm:isolation-auto sm:overflow-visible">
+      <div className="relative z-20 flex h-full w-full flex-col justify-between gap-8 p-5 sm:static sm:z-auto sm:w-3/4 sm:gap-16 sm:p-10 xl:p-14">
         {textFirst ? cardCopy : cardVisual}
         {textFirst ? cardVisual : cardCopy}
       </div>
@@ -189,18 +189,21 @@ const ProblemCard: React.FC<{ problem: Problem; index: number }> = ({
 };
 
 const StaticProblems: React.FC = () => (
-  <section className="relative w-full px-6 py-32">
+  <section className="relative left-1/2 w-screen -translate-x-1/2 py-24 sm:left-auto sm:w-full sm:translate-x-0 sm:px-6 sm:py-32">
     <div className="mx-auto max-w-[1440px]">
-      <div className="mb-20 text-center lg:mb-28">
+      <div className="mb-12 text-center sm:mb-20 lg:mb-28">
         <h2 className="font-inter text-[30px] font-medium leading-[1.08] tracking-tighter text-[#141413] sm:text-[36px] lg:text-[48px]">
           The Model Is Ready
           <br />
           The World Around It Isn't
         </h2>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-0 sm:gap-6 lg:grid-cols-3">
         {problems.map((problem, index) => (
-          <div key={problem.label} className="min-h-[560px]">
+          <div
+            key={problem.label}
+            className={`min-h-[440px] sm:min-h-[560px] ${index > 0 ? "-mt-px sm:mt-0" : ""}`}
+          >
             <ProblemCard problem={problem} index={index} />
           </div>
         ))}

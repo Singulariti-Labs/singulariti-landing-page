@@ -10,10 +10,27 @@
   pointer-events: none;
 }
 
+@media (max-width: 639px) {
+  .connection-animation {
+    z-index: 0;
+    width: 40%;
+    overflow: visible;
+    border-left: 0;
+    background: transparent;
+  }
+
+}
+
 .connection-animation__row {
   --meeting-point: 64%;
   position: relative;
   overflow: hidden;
+}
+
+@media (max-width: 639px) {
+  .connection-animation__row {
+    overflow: visible;
+  }
 }
 
 .connection-animation__row--reverse {

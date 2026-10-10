@@ -26,6 +26,17 @@
   animation: arc-sector-cycle 7s ease-in-out infinite;
 }
 
+@media (max-width: 639px) {
+  .arc-sweep-animation {
+    z-index: 0;
+    width: 40%;
+    min-width: 0;
+    aspect-ratio: auto;
+    overflow: visible;
+    background: transparent;
+  }
+}
+
 .arc-sweep-animation__orbit,
 .arc-sweep-animation__sector,
 .arc-sweep-animation__axis {

@@ -41,7 +41,9 @@ function App() {
                   <div className="content-container flow-root">
                     <Section2 />
                     <Section3 />
-                    <ProductJourney />
+                  </div>
+                  <ProductJourney />
+                  <div className="content-container flow-root">
                     <AuraCTA />
                   </div>
                 </div>

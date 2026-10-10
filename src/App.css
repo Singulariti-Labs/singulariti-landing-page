@@ -247,6 +247,117 @@
   }
 }
 
+/*
+ * Desktop product cards are a single responsive composition. Their previous
+ * fixed 520px height was combined with a viewport-relative width, which made
+ * browser zoom change the card's aspect ratio while its contents stayed fixed.
+ * These unlayered overrides intentionally win over the generated utilities;
+ * container units keep every internal measurement tied to the card itself.
+ */
+@media (min-width: 1024px) {
+  .product-showcase-card.aura-gradient-border {
+    container-type: inline-size;
+    flex-shrink: 0;
+    height: auto;
+    aspect-ratio: 2.0472;
+    border-radius: 3.008cqw;
+  }
+
+  .product-showcase-card .product-card-gradient {
+    border-radius: 2.82cqw;
+  }
+
+  .product-showcase-card .product-card-visual--aura {
+    padding: 3.759cqw;
+  }
+
+  .product-showcase-card .aura-logo-lockup {
+    width: 92%;
+    max-width: none;
+    transform: translate(-3.008cqw, -2.256cqw);
+  }
+
+  .product-showcase-card .product-card-copy-panel--aura {
+    padding: 7.519cqw;
+    padding-bottom: 1.88cqw;
+  }
+
+  .product-showcase-card .product-card-copy {
+    transform: translateY(-3.759cqw);
+  }
+
+  .product-showcase-card .product-card-visual--a2i {
+    padding: 7.519cqw 2.256cqw 7.519cqw 7.519cqw;
+  }
+
+  .product-showcase-card .product-card-a2i-lockup {
+    max-width: 39.474cqw;
+  }
+
+  .product-showcase-card .product-card-a2i-title,
+  .product-showcase-card .product-card-hardware-title,
+  .product-showcase-card .product-card-hardware-coming {
+    font-size: 15.038cqw;
+  }
+
+  .product-showcase-card .product-card-a2i-subtitle {
+    margin-top: 3.008cqw;
+    font-size: 7.331cqw;
+  }
+
+  .product-showcase-card .product-card-copy-panel--a2i {
+    padding: 7.519cqw;
+    padding-bottom: 5.451cqw;
+  }
+
+  .product-showcase-card .product-card-body,
+  .product-showcase-card .product-card-hardware-copy {
+    font-size: 2.632cqw;
+  }
+
+  .product-showcase-card .product-card-hardware-surface {
+    padding: 3.759cqw 5.263cqw 0;
+  }
+
+  .product-showcase-card .product-card-hardware-title {
+    translate: none;
+    transform: translateY(-4.511cqw);
+  }
+
+  .product-showcase-card .product-card-hardware-copy {
+    top: 13.158cqw;
+    translate: none;
+    transform: translate(8.5cqw, -4.511cqw);
+  }
+
+  .product-showcase-card .product-card-hardware-coming {
+    top: auto;
+    bottom: 1.5cqw;
+    padding-inline: 0;
+    text-align: center;
+    translate: none;
+    transform: none;
+  }
+
+  /* Keep the full phase visible when desktop zoom creates a short viewport. */
+  @media (max-height: 600px) {
+    .product-phase {
+      align-items: center;
+    }
+
+    .product-phase .product-showcase-card,
+    .product-phase>.product-phase-heading {
+      width: min(100%, calc((100dvh - 8.5rem) * 2.0472));
+    }
+
+    .product-phase>.product-phase-heading {
+      flex-shrink: 0;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+  }
+}
+
 @keyframes aura-border-clockwise {
   to {
     --aura-border-angle: 360deg;

@@ -13,6 +13,15 @@
   pointer-events: none;
 }
 
+@media (max-width: 639px) {
+  .isolation-flow-animation {
+    z-index: 0;
+    width: 40%;
+    overflow: visible;
+    background-color: transparent;
+  }
+}
+
 .isolation-flow-animation__bar {
   position: absolute;
   z-index: 1;
