@@ -320,13 +320,15 @@
   }
 
   .product-showcase-card .product-card-hardware-title {
-    translate: none;
+    /* Tailwind v4 uses the individual translate property. Reset it here so
+       it does not stack with this desktop composition's transform. */
+    translate: 0 0 !important;
     transform: translateY(-4.511cqw);
   }
 
   .product-showcase-card .product-card-hardware-copy {
     top: 13.158cqw;
-    translate: none;
+    translate: 0 0 !important;
     transform: translate(8.5cqw, -4.511cqw);
   }
 
@@ -335,7 +337,7 @@
     bottom: 1.5cqw;
     padding-inline: 0;
     text-align: center;
-    translate: none;
+    translate: 0 0 !important;
     transform: none;
   }
 
