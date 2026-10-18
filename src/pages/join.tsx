@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import joinBg from "@/assets/join-bg.png";
+import joinBg768 from "@/assets/optimized/join-bg-768.webp";
+import joinBg1440 from "@/assets/optimized/join-bg-1440.webp";
+import joinBg2160 from "@/assets/optimized/join-bg-2160.webp";
 
 const JoinWaitlist = () => {
   const [email, setEmail] = useState("");
@@ -45,17 +47,20 @@ const JoinWaitlist = () => {
   };
 
   return (
-    <div
-      className="min-h-screen w-full flex flex-col relative"
-      style={{
-        backgroundImage: `url(${joinBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh",
-        width: "100vw",
-      }}
-    >
+    <div className="relative min-h-screen w-screen overflow-hidden">
+      <img
+        src={joinBg1440}
+        srcSet={`${joinBg768} 768w, ${joinBg1440} 1440w, ${joinBg2160} 2160w`}
+        sizes="100vw"
+        alt=""
+        aria-hidden="true"
+        width="6922"
+        height="4483"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 size-full object-cover object-center"
+      />
+      <div className="relative z-10 flex min-h-screen w-full flex-col">
       <button
         onClick={() => window.history.back()}
         className="absolute top-6 left-6 z-20 inline-flex items-center text-black/70 hover:text-black transition-colors duration-200 backdrop-blur-sm bg-white/30 !px-4 !py-2 rounded-full"
@@ -135,6 +140,7 @@ const JoinWaitlist = () => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

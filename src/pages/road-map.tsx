@@ -1,5 +1,7 @@
 import React from "react";
-import bgImage from "../assets/roadmap_bg.png"; // <-- replace with your image path
+import bgImage768 from "../assets/optimized/roadmap_bg-768.webp";
+import bgImage1440 from "../assets/optimized/roadmap_bg-1440.webp";
+import bgImage1920 from "../assets/optimized/roadmap_bg-1920.webp";
 
 const RoadMap: React.FC = () => {
   const handleExploreAura = () => {
@@ -10,9 +12,20 @@ const RoadMap: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       {/* ===== Hero Section ===== */}
       <section
-        className="relative w-full h-[20vh] md:h-[30vh] lg:h-[40vh] bg-cover bg-center"
-        style={{ backgroundImage: `url(${bgImage})` }}
+        className="relative h-[20vh] w-full overflow-hidden md:h-[30vh] lg:h-[40vh]"
       >
+        <img
+          src={bgImage1440}
+          srcSet={`${bgImage768} 768w, ${bgImage1440} 1440w, ${bgImage1920} 1920w`}
+          sizes="100vw"
+          alt=""
+          aria-hidden="true"
+          width="1920"
+          height="535"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 size-full object-cover object-center"
+        />
         {/* Heading positioned bottom-left */}
         <div className="absolute bottom-10 left-10 z-10">
           <h1 className="text-4xl md:text-8xl font-medium text-black [text-shadow:2px_4px_6px_rgba(0,0,0,0.4)]">

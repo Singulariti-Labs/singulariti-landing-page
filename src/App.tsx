@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import HeroSection from './components/hero';
 import Navbar from './components/navbar';
-import Section2 from './components/section2';
-import Section3 from './components/section3';
-import ProductJourney from './components/ProductJourney';
-import AuraCTA from './components/AuraCTA';
 import Footer from './components/footer';
-import JoinWaitlist from './pages/join';
-import RoadMap from './pages/road-map';
-import About from "./pages/about";
-import GetYourAuraPage from "./pages/get_your_aura";
-import NotifyMePage from "./pages/notify_me";
+
+const HomePage = lazy(() => import('./pages/home'));
+const JoinWaitlist = lazy(() => import('./pages/join'));
+const RoadMap = lazy(() => import('./pages/road-map'));
+const About = lazy(() => import('./pages/about'));
+const GetYourAuraPage = lazy(() => import('./pages/get_your_aura'));
+const NotifyMePage = lazy(() => import('./pages/notify_me'));
+
+const RouteFallback = () => (
+  <div
+    className="min-h-[50dvh] w-full bg-[#F0EEE6]"
+    aria-label="Loading page"
+    role="status"
+  />
+);
 
 function App() {
   const location = useLocation();
@@ -28,37 +33,17 @@ function App() {
       )}
 
       <main className={['/', '/aura'].includes(location.pathname) ? 'w-full flex-grow' : 'content-container flex-grow'}>
-        <Routes>
-          {/* Home page */}
-          <Route
-            path="/"
-            element={
-              <>
-                <div className="content-container">
-                  <HeroSection />
-                </div>
-                <div className="home-white-transition">
-                  <div className="content-container flow-root">
-                    <Section2 />
-                    <Section3 />
-                  </div>
-                  <ProductJourney />
-                  <div className="content-container flow-root">
-                    <AuraCTA />
-                  </div>
-                </div>
-              </>
-            }
-          />
-
-          {/* New page: /join-waitlist */}
-          <Route path="/join-waitlist" element={<JoinWaitlist />} />
-          <Route path="/singulariti-road-map" element={<RoadMap />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/aura" element={<GetYourAuraPage />} />
-          <Route path="/get-your-aura" element={<Navigate to="/aura" replace />} />
-          <Route path="/notify-me" element={<NotifyMePage />} />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/join-waitlist" element={<JoinWaitlist />} />
+            <Route path="/singulariti-road-map" element={<RoadMap />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/aura" element={<GetYourAuraPage />} />
+            <Route path="/get-your-aura" element={<Navigate to="/aura" replace />} />
+            <Route path="/notify-me" element={<NotifyMePage />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <Footer />

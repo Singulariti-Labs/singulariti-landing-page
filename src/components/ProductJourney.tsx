@@ -9,9 +9,12 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import auraLogoLockup from "../assets/aura-logo-lockup-transparent.png";
-import hardwareSmartGlasses from "../assets/smart-glasses-transparent.png";
-import purpleTitleTexture from "../assets/product-journey-purple-texture-white.png";
+import auraLogoLockup768 from "../assets/optimized/aura-logo-lockup-transparent-768.webp";
+import auraLogoLockup1218 from "../assets/optimized/aura-logo-lockup-transparent-1218.webp";
+import hardwareSmartGlasses768 from "../assets/optimized/smart-glasses-transparent-768.webp";
+import hardwareSmartGlasses1440 from "../assets/optimized/smart-glasses-transparent-1440.webp";
+import hardwareSmartGlasses1931 from "../assets/optimized/smart-glasses-transparent-1931.webp";
+import purpleTitleTexture from "../assets/optimized/product-journey-purple-texture-white-1102.webp";
 
 const phaseHeadingClass =
   "product-phase-heading mb-8 max-w-[1100px] px-5 font-inter text-[14px] font-normal leading-[0.98] tracking-[-0.055em] text-[#141413] sm:px-0 sm:text-[3rem] md:mb-16 lg:mb-10";
@@ -24,7 +27,9 @@ const AuraCard: React.FC<{ interactive?: boolean }> = ({ interactive = true }) =
     />
     <div className="product-card-visual product-card-visual--aura relative z-10 flex min-h-[180px] items-center justify-start bg-transparent px-4 py-4 sm:h-full sm:min-h-0 sm:justify-center sm:px-8 sm:py-10 lg:px-10">
       <img
-        src={auraLogoLockup}
+        src={auraLogoLockup768}
+        srcSet={`${auraLogoLockup768} 768w, ${auraLogoLockup1218} 1218w`}
+        sizes="(max-width: 639px) 55vw, (max-width: 1023px) 48vw, 460px"
         alt="Aura"
         className="aura-logo-lockup h-auto w-[62%] max-w-[460px] -translate-x-8 sm:w-[120%] sm:translate-x-0 sm:translate-y-0 md:-translate-x-5 lg:w-[92%] lg:-translate-x-8 lg:-translate-y-6"
       />
@@ -118,7 +123,9 @@ const HardwareCard: React.FC = () => (
         <span className="block sm:inline">Soon</span>
       </p>
       <img
-        src={hardwareSmartGlasses}
+        src={hardwareSmartGlasses1440}
+        srcSet={`${hardwareSmartGlasses768} 768w, ${hardwareSmartGlasses1440} 1440w, ${hardwareSmartGlasses1931} 1931w`}
+        sizes="(max-width: 639px) 100vw, 84vw"
         alt="Transparent smart glasses showing their internal camera and electronics"
         width={1931}
         height={814}

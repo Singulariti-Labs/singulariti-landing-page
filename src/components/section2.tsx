@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Section2: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -10,15 +11,17 @@ const Section2: React.FC = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let isIntersecting = false;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       const parent = canvas.parentElement;
       if (parent) {
         // Increase resolution for crisper noise/blur
-        canvas.width = parent.offsetWidth * window.devicePixelRatio;
-        canvas.height = parent.offsetHeight * window.devicePixelRatio;
-        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        canvas.width = parent.offsetWidth * pixelRatio;
+        canvas.height = parent.offsetHeight * pixelRatio;
+        ctx.scale(pixelRatio, pixelRatio);
       }
     };
     resize();
@@ -41,8 +44,8 @@ const Section2: React.FC = () => {
     }
 
     const draw = (t: number) => {
-      const W = canvas.width / window.devicePixelRatio;
-      const H = canvas.height / window.devicePixelRatio;
+      const W = canvas.width / pixelRatio;
+      const H = canvas.height / pixelRatio;
       ctx.clearRect(0, 0, W, H);
 
       const s = t * 0.00055;
@@ -88,16 +91,38 @@ const Section2: React.FC = () => {
       draw(t);
       animationFrameId = requestAnimationFrame(loop);
     };
-    animationFrameId = requestAnimationFrame(loop);
+
+    const syncAnimation = () => {
+      const shouldRun = isIntersecting && document.visibilityState === "visible";
+      if (shouldRun && animationFrameId === 0) {
+        animationFrameId = requestAnimationFrame(loop);
+      } else if (!shouldRun && animationFrameId !== 0) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = 0;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = entry.isIntersecting;
+        syncAnimation();
+      },
+      { rootMargin: "200px 0px" },
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    document.addEventListener("visibilitychange", syncAnimation);
 
     return () => {
       window.removeEventListener("resize", resize);
-      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener("visibilitychange", syncAnimation);
+      observer.disconnect();
+      if (animationFrameId !== 0) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <section className="relative w-full mt-16 md:mt-32 pt-10 pb-10 bg-transparent flex items-center justify-center overflow-visible px-4 md:px-0">
+    <section ref={sectionRef} className="relative w-full mt-16 md:mt-32 pt-10 pb-10 bg-transparent flex items-center justify-center overflow-visible px-4 md:px-0">
       <div className="relative w-full min-h-[280px] md:h-[360px] py-12 md:py-0 flex items-center justify-center rounded-[30px] md:rounded-[40px] overflow-hidden group z-10">
         {/* Animated Background Canvas Container */}
         <div className="absolute inset-0 pointer-events-none select-none z-0">

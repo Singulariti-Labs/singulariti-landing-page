@@ -8,7 +8,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import auraVoicePricingBackground from "../assets/aura_voice_pricing_bg.png";
+import auraVoicePricingBackground1672 from "../assets/optimized/aura_voice_pricing_bg-1672.webp";
 
 type BillingCycle = "monthly" | "yearly";
 
@@ -166,7 +166,7 @@ const AuraVoicePricingSection: React.FC<AuraVoicePricingSectionProps> = ({
     <section
       className="relative isolate overflow-x-clip bg-white bg-cover bg-center bg-no-repeat text-[#141413]"
       style={{
-        backgroundImage: `url(${auraVoicePricingBackground})`,
+        backgroundImage: `url(${auraVoicePricingBackground1672})`,
         backgroundAttachment: reduceMotion ? "scroll" : "fixed",
       }}
     >

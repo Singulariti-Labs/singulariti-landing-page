@@ -1,5 +1,7 @@
 import React from "react";
-import auraProductImage from "../assets/aura_product_image.png";
+import auraProductImage768 from "../assets/optimized/aura_product_image-768.webp";
+import auraProductImage1440 from "../assets/optimized/aura_product_image-1440.webp";
+import auraProductImage2160 from "../assets/optimized/aura_product_image-2160.webp";
 
 const AuraFeatureStage: React.FC = () => {
   return (
@@ -20,7 +22,9 @@ const AuraFeatureStage: React.FC = () => {
       >
         <img
           className="block size-full object-cover object-[54%_top] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_52%,rgb(0_0_0_/_88%)_62%,rgb(0_0_0_/_48%)_76%,rgb(0_0_0_/_12%)_90%,transparent_100%)] [mask-image:linear-gradient(to_bottom,#000_0%,#000_52%,rgb(0_0_0_/_88%)_62%,rgb(0_0_0_/_48%)_76%,rgb(0_0_0_/_12%)_90%,transparent_100%)] md:object-top"
-          src={auraProductImage}
+          src={auraProductImage1440}
+          srcSet={`${auraProductImage768} 768w, ${auraProductImage1440} 1440w, ${auraProductImage2160} 2160w`}
+          sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 82vw, 1088px"
           alt=""
           width="4324"
           height="2380"

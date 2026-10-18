@@ -1,10 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
-import auraAgentsBackground from "../assets/aura_agents_background.png";
-import auraDictationBackground from "../assets/aura_dictation_background.png";
-import auraFeaturesBackground from "../assets/aura_features_bg.png";
-import showcaseBrowser from "../assets/showcase1_browser.png";
-import showcaseMail from "../assets/showcase2_mail.png";
+import auraAgentsBackground768 from "../assets/optimized/aura_agents_background-768.webp";
+import auraAgentsBackground1440 from "../assets/optimized/aura_agents_background-1440.webp";
+import auraAgentsBackground1672 from "../assets/optimized/aura_agents_background-1672.webp";
+import auraDictationBackground768 from "../assets/optimized/aura_dictation_background-768.webp";
+import auraDictationBackground1440 from "../assets/optimized/aura_dictation_background-1440.webp";
+import auraDictationBackground1672 from "../assets/optimized/aura_dictation_background-1672.webp";
+import auraFeaturesBackground768 from "../assets/optimized/aura_features_bg-768.webp";
+import auraFeaturesBackground1440 from "../assets/optimized/aura_features_bg-1440.webp";
+import auraFeaturesBackground2160 from "../assets/optimized/aura_features_bg-2160.webp";
+import showcaseBrowser768 from "../assets/optimized/showcase1_browser-768.webp";
+import showcaseBrowser1440 from "../assets/optimized/showcase1_browser-1440.webp";
+import showcaseBrowser2160 from "../assets/optimized/showcase1_browser-2160.webp";
+import showcaseMail768 from "../assets/optimized/showcase2_mail-768.webp";
+import showcaseMail1200 from "../assets/optimized/showcase2_mail-1200.webp";
+import showcaseMail1380 from "../assets/optimized/showcase2_mail-1380.webp";
 import AuraDictationTranscript, {
   DICTATION_LISTENING_DURATION_MS,
 } from "./AuraDictationTranscript";
@@ -65,7 +75,9 @@ const DictationShowcase: React.FC = () => {
 
     <div className="absolute right-[2.5%] bottom-[3.5%] w-[47.5%] overflow-hidden rounded-[clamp(5px,1.2cqi,12px)] shadow-[0_14px_30px_rgba(31,19,62,0.24)]">
       <img
-        src={showcaseMail}
+        src={showcaseMail1200}
+        srcSet={`${showcaseMail768} 768w, ${showcaseMail1200} 1200w, ${showcaseMail1380} 1380w`}
+        sizes="(max-width: 767px) 45vw, 34vw"
         alt="Email composer where Aura types the polished message"
         width="1380"
         height="1048"
@@ -137,7 +149,21 @@ const AuraFeatureVisual: React.FC<AuraFeatureVisualProps> = ({
       className={`@container relative aspect-[5/3] w-full overflow-hidden rounded-[12px] bg-[#DCD5FF] shadow-[0_5px_5px_rgba(45,27,86,0.16)] ${imageOnRight ? "md:order-2" : ""}`}
     >
       <img
-        src={index === 1 ? auraDictationBackground : index === 2 ? auraAgentsBackground : auraFeaturesBackground}
+        src={
+          index === 1
+            ? auraDictationBackground1440
+            : index === 2
+              ? auraAgentsBackground1440
+              : auraFeaturesBackground1440
+        }
+        srcSet={
+          index === 1
+            ? `${auraDictationBackground768} 768w, ${auraDictationBackground1440} 1440w, ${auraDictationBackground1672} 1672w`
+            : index === 2
+              ? `${auraAgentsBackground768} 768w, ${auraAgentsBackground1440} 1440w, ${auraAgentsBackground1672} 1672w`
+              : `${auraFeaturesBackground768} 768w, ${auraFeaturesBackground1440} 1440w, ${auraFeaturesBackground2160} 2160w`
+        }
+        sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 82vw, 1088px"
         alt=""
         width={index > 0 ? "1674" : "2936"}
         height={index > 0 ? "909" : "1748"}
@@ -150,7 +176,9 @@ const AuraFeatureVisual: React.FC<AuraFeatureVisualProps> = ({
         <div className="absolute inset-0" aria-label="Aura working over a travel website">
           <div className="absolute top-[22%] right-0 w-[85%] overflow-hidden rounded-tl-[clamp(6px,0.8vw,12px)] shadow-[0_12px_24px_rgba(31,19,62,0.2)]">
             <img
-              src={showcaseBrowser}
+              src={showcaseBrowser1440}
+              srcSet={`${showcaseBrowser768} 768w, ${showcaseBrowser1440} 1440w, ${showcaseBrowser2160} 2160w`}
+              sizes="(max-width: 767px) 72vw, 68vw"
               alt="A travel website for Sanur Beach open underneath Aura"
               width="2480"
               height="1368"

@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import compression from "compression";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -9,6 +10,7 @@ dotenv.config();
 const app = express();
 const prisma = new PrismaClient();
 
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 
@@ -38,8 +40,24 @@ app.post("/api/waitlist", async (req, res) => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static assets from Vite build
-app.use(express.static(path.join(__dirname, "../dist")));
+const distDirectory = path.join(__dirname, "../dist");
+
+// Vite fingerprints build assets, so they can be cached permanently. Root files
+// such as the favicon keep a short cache because their names are stable.
+app.use(
+  "/assets",
+  express.static(path.join(distDirectory, "assets"), {
+    immutable: true,
+    index: false,
+    maxAge: "1y",
+  }),
+);
+app.use(
+  express.static(distDirectory, {
+    index: false,
+    maxAge: "1h",
+  }),
+);
 
 // Preserve existing links and transfer search ranking signals to the canonical Aura URL.
 app.get("/get-your-aura", (req, res) => {
@@ -48,7 +66,8 @@ app.get("/get-your-aura", (req, res) => {
 
 // Catch-all route -> send React app
 app.get(/^(?!\/api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist", "index.html"));
+  res.set("Cache-Control", "no-cache");
+  res.sendFile(path.join(distDirectory, "index.html"));
 });
 
 // ================== START SERVER ==================

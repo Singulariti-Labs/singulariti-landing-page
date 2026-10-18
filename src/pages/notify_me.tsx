@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import NotifyMeForm from "../components/NotifyMeForm";
-import auraBgLogo from "../assets/aura_bg_logo.png";
+import auraBgLogo768 from "../assets/optimized/aura_bg_logo-768.webp";
+import auraBgLogo1440 from "../assets/optimized/aura_bg_logo-1440.webp";
+import auraBgLogo2160 from "../assets/optimized/aura_bg_logo-2160.webp";
 import { motion } from "framer-motion";
 
 const NotifyMePage: React.FC = () => {
@@ -19,7 +21,16 @@ const NotifyMePage: React.FC = () => {
                     width: 'min(100vw, 800px)',
                 }}
             >
-                <img src={auraBgLogo} alt="" className="w-full h-auto grayscale" />
+                <img
+                    src={auraBgLogo768}
+                    srcSet={`${auraBgLogo768} 768w, ${auraBgLogo1440} 1440w, ${auraBgLogo2160} 2160w`}
+                    sizes="min(100vw, 800px)"
+                    alt=""
+                    width="5488"
+                    height="4052"
+                    decoding="async"
+                    className="w-full h-auto grayscale"
+                />
             </div>
 
             {/* Content Container - Full Page */}
