@@ -76,11 +76,9 @@
     z-index: -1;
     inset: -0.08em -0.14em -0.04em;
     border-radius: 0.12em;
-    background: linear-gradient(
-      180deg,
-      var(--product-purple-soft) 0%,
-      var(--product-purple-bright) 100%
-    );
+    background: linear-gradient(180deg,
+        var(--product-purple-soft) 0%,
+        var(--product-purple-bright) 100%);
     filter: blur(1.4px);
     box-shadow:
       0 0 0.3em 0.08em rgb(155 111 192 / 60%),
@@ -158,6 +156,14 @@
     overflow-x: hidden;
   }
 
+  @media (max-width: 319px) {
+
+    html,
+    body {
+      min-width: 0;
+    }
+  }
+
   /* ✅ Make sure root does not hijack scroll */
   #root,
   .App {
@@ -183,6 +189,319 @@
 
   .font-darker {
     font-family: var(--font-darker);
+  }
+
+  .aura-speech-caption {
+    position: absolute;
+    z-index: 10;
+    bottom: 8.3%;
+    left: 42.7%;
+    width: 34%;
+    min-height: clamp(12px, 2.1vw, 28px);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(2px, 0.22vw, 4px) clamp(5px, 0.7vw, 11px);
+    overflow: hidden;
+    white-space: nowrap;
+    border-radius: clamp(3px, 0.55vw, 8px);
+    background: rgb(0 0 0 / 60%);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 18%);
+    -webkit-backdrop-filter: blur(4px) brightness(35%);
+    backdrop-filter: blur(4px) brightness(35%);
+    transform: translateX(-50%);
+    font-family: var(--font-inter);
+    font-size: clamp(6px, 0.8vw, 12px);
+    line-height: 1.2;
+    font-weight: 400;
+    color: #fff;
+  }
+
+  .aura-speech-caption__word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.28em);
+    will-change: transform, opacity;
+  }
+
+  .aura-speech-caption--speaking .aura-speech-caption__word {
+    animation: aura-speech-word-in 440ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--speech-word-index) * 213ms + 220ms);
+  }
+
+  .aura-dictation-showcase {
+    --dictation-cleanup-start: 10.1s;
+    --dictation-collapse-start: 11.15s;
+    --dictation-mail-transfer-start: 13.05s;
+    --dictation-mail-copy-start: 13.88s;
+  }
+
+  .aura-dictation-transcript__raw {
+    opacity: 1;
+  }
+
+  .aura-dictation-transcript__word {
+    display: inline-block;
+    position: relative;
+    margin-right: 0.28em;
+    font-size: 1em;
+    opacity: 0;
+    transform: translateY(0.28em);
+    will-change: transform, opacity;
+  }
+
+  .aura-dictation-transcript__word:last-child {
+    margin-right: 0;
+  }
+
+  .aura-dictation-transcript--listening .aura-dictation-transcript__word {
+    animation: aura-speech-word-in 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--dictation-word-index) * 140ms + 220ms);
+  }
+
+  .aura-dictation-transcript--listening .aura-dictation-transcript__word--issue {
+    animation:
+      aura-speech-word-in 320ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--dictation-word-index) * 140ms + 220ms) forwards,
+      aura-dictation-issue-dissolve 1050ms ease-in-out var(--dictation-cleanup-start) forwards,
+      aura-dictation-issue-collapse 620ms cubic-bezier(0.4, 0, 0.2, 1) var(--dictation-collapse-start) forwards;
+  }
+
+  .aura-dictation-transcript__word--issue::before,
+  .aura-dictation-transcript__word--issue::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.5em;
+    height: 1.8em;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      radial-gradient(circle at 12% 28%, currentColor 0 0.09em, transparent 0.12em),
+      radial-gradient(circle at 86% 18%, currentColor 0 0.07em, transparent 0.1em),
+      radial-gradient(circle at 74% 84%, currentColor 0 0.1em, transparent 0.13em),
+      radial-gradient(circle at 24% 76%, currentColor 0 0.06em, transparent 0.09em);
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+
+  .aura-dictation-transcript__word--issue::after {
+    transform: translate(-50%, -50%) scale(0.35) rotate(45deg);
+  }
+
+  .aura-dictation-transcript--listening .aura-dictation-transcript__word--issue::before,
+  .aura-dictation-transcript--listening .aura-dictation-transcript__word--issue::after {
+    animation: aura-dictation-sparkle-burst 900ms ease-out var(--dictation-cleanup-start) both;
+  }
+
+  .aura-dictation-transcript--listening .aura-dictation-transcript__word--issue::after {
+    animation-delay: calc(var(--dictation-cleanup-start) + 90ms);
+  }
+
+  .aura-dictation-transcript__formatted {
+    position: absolute;
+    inset: 0;
+    display: block;
+    color: #111111;
+    opacity: 0;
+    filter: blur(0.16em);
+    transform: translateY(0.12em) scale(0.995);
+  }
+
+  .aura-dictation-transcript--listening .aura-dictation-transcript__raw {
+    animation: aura-dictation-raw-out 760ms cubic-bezier(0.4, 0, 0.2, 1) var(--dictation-collapse-start) forwards;
+  }
+
+  .aura-dictation-transcript--listening .aura-dictation-transcript__formatted {
+    animation:
+      aura-dictation-formatted-in 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--dictation-collapse-start) forwards,
+      aura-dictation-to-mail 780ms cubic-bezier(0.4, 0, 0.2, 1) var(--dictation-mail-transfer-start) forwards;
+  }
+
+  .aura-dictation-mail-copy {
+    position: absolute;
+    z-index: 2;
+    top: 6.5%;
+    right: 6%;
+    bottom: 25%;
+    left: 7%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 1.05cqi, 11px);
+    overflow: hidden;
+    font-family: var(--font-inter);
+    font-size: clamp(5.5px, 1.6cqi, 13px);
+    line-height: 1.35;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: #111111;
+    opacity: 0;
+    filter: blur(0.14em);
+    transform: translateY(0.35em);
+  }
+
+  .aura-dictation-mail-copy p {
+    margin: 0;
+  }
+
+  .aura-dictation-showcase:has(.aura-dictation-transcript--listening) .aura-dictation-mail-copy {
+    animation: aura-dictation-mail-copy-in 800ms cubic-bezier(0.22, 1, 0.36, 1) var(--dictation-mail-copy-start) forwards;
+  }
+}
+
+@keyframes aura-speech-word-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aura-dictation-issue-dissolve {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0) scale(1) rotate(0);
+    text-shadow: 0 0 0 currentColor;
+  }
+
+  24% {
+    opacity: 1;
+    transform: translateX(-0.06em) scale(1.16) rotate(-1deg);
+    text-shadow: 0 0 0.45em currentColor;
+  }
+
+  38% {
+    transform: translateX(0.08em) scale(1.16) rotate(1deg);
+  }
+
+  52% {
+    transform: translateX(-0.07em) scale(1.13) rotate(-0.8deg);
+  }
+
+  66% {
+    opacity: 1;
+    transform: translateX(0.05em) scale(1.08) rotate(0.6deg);
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(0.2em);
+    transform: translateX(0) scale(0.62) rotate(-1deg);
+    text-shadow: 0 0 0.8em currentColor;
+  }
+}
+
+@keyframes aura-dictation-issue-collapse {
+  from {
+    margin-right: 0.28em;
+    font-size: 1em;
+  }
+
+  to {
+    margin-right: 0;
+    font-size: 0;
+  }
+}
+
+@keyframes aura-dictation-sparkle-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35) rotate(0);
+  }
+
+  24% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.45) rotate(28deg);
+  }
+}
+
+@keyframes aura-dictation-raw-out {
+  to {
+    opacity: 0;
+    filter: blur(0.1em);
+  }
+}
+
+@keyframes aura-dictation-formatted-in {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes aura-dictation-to-mail {
+  from {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    filter: blur(0.16em);
+    transform: translate(7.5%, 4%) scale(0.98);
+  }
+}
+
+@keyframes aura-dictation-mail-copy-in {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aura-speech-caption--speaking .aura-speech-caption__word {
+    animation: none;
+  }
+
+  .aura-speech-caption__word {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  .aura-dictation-transcript--listening .aura-dictation-transcript__word {
+    animation: none;
+  }
+
+  .aura-dictation-transcript__word {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  .aura-dictation-transcript__raw,
+  .aura-dictation-transcript--listening .aura-dictation-transcript__raw {
+    animation: none;
+    opacity: 0;
+  }
+
+  .aura-dictation-transcript--listening .aura-dictation-transcript__word--issue::before,
+  .aura-dictation-transcript--listening .aura-dictation-transcript__word--issue::after {
+    animation: none;
+  }
+
+  .aura-dictation-transcript__formatted,
+  .aura-dictation-transcript--listening .aura-dictation-transcript__formatted {
+    animation: none;
+    filter: none;
+    opacity: 0;
+    transform: none;
+  }
+
+  .aura-dictation-mail-copy,
+  .aura-dictation-showcase:has(.aura-dictation-transcript--listening) .aura-dictation-mail-copy {
+    animation: none;
+    filter: none;
+    opacity: 1;
+    transform: none;
   }
 }
 

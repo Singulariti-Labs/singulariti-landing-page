@@ -27,7 +27,7 @@ function App() {
         </header>
       )}
 
-      <main className={location.pathname === '/' ? 'w-full flex-grow' : 'content-container flex-grow'}>
+      <main className={['/', '/get-your-aura'].includes(location.pathname) ? 'w-full flex-grow' : 'content-container flex-grow'}>
         <Routes>
           {/* Home page */}
           <Route
