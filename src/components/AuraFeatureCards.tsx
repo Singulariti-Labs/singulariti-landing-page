@@ -24,6 +24,57 @@ import AuraSpeechCaption from "./AuraSpeechCaption";
 
 type DictationPhase = "idle" | "listening" | "polishing";
 
+const featureCardImageSizes =
+  "(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 82vw, 1088px";
+const showcaseBrowserSizes = "(max-width: 767px) 72vw, 68vw";
+const showcaseMailSizes = "(max-width: 767px) 45vw, 34vw";
+
+const featureAssets = [
+  {
+    src: auraFeaturesBackground1440,
+    srcSet: `${auraFeaturesBackground768} 768w, ${auraFeaturesBackground1440} 1440w, ${auraFeaturesBackground2160} 2160w`,
+    sizes: featureCardImageSizes,
+  },
+  {
+    src: auraDictationBackground1440,
+    srcSet: `${auraDictationBackground768} 768w, ${auraDictationBackground1440} 1440w, ${auraDictationBackground1672} 1672w`,
+    sizes: featureCardImageSizes,
+  },
+  {
+    src: auraAgentsBackground1440,
+    srcSet: `${auraAgentsBackground768} 768w, ${auraAgentsBackground1440} 1440w, ${auraAgentsBackground1672} 1672w`,
+    sizes: featureCardImageSizes,
+  },
+  {
+    src: showcaseBrowser1440,
+    srcSet: `${showcaseBrowser768} 768w, ${showcaseBrowser1440} 1440w, ${showcaseBrowser2160} 2160w`,
+    sizes: showcaseBrowserSizes,
+  },
+  {
+    src: showcaseMail1200,
+    srcSet: `${showcaseMail768} 768w, ${showcaseMail1200} 1200w, ${showcaseMail1380} 1380w`,
+    sizes: showcaseMailSizes,
+  },
+] as const;
+
+const preloadResponsiveImage = ({
+  src,
+  srcSet,
+  sizes,
+}: (typeof featureAssets)[number]) =>
+  new Promise<void>((resolve) => {
+    const image = new Image();
+    image.decoding = "async";
+    image.fetchPriority = "low";
+    image.sizes = sizes;
+    image.srcset = srcSet;
+    image.onload = () => {
+      image.decode().catch(() => undefined).finally(resolve);
+    };
+    image.onerror = () => resolve();
+    image.src = src;
+  });
+
 const DictationShowcase: React.FC = () => {
   const showcaseRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<DictationPhase>("idle");
@@ -77,11 +128,12 @@ const DictationShowcase: React.FC = () => {
       <img
         src={showcaseMail1200}
         srcSet={`${showcaseMail768} 768w, ${showcaseMail1200} 1200w, ${showcaseMail1380} 1380w`}
-        sizes="(max-width: 767px) 45vw, 34vw"
+        sizes={showcaseMailSizes}
         alt="Email composer where Aura types the polished message"
         width="1380"
         height="1048"
-        loading="lazy"
+        loading="eager"
+        fetchPriority="low"
         decoding="async"
         className="block h-auto w-full"
       />
@@ -134,14 +186,17 @@ const features = [
 type AuraFeatureVisualProps = {
   index: number;
   imageOnRight: boolean;
+  assetsReady: boolean;
 };
 
 const AuraFeatureVisual: React.FC<AuraFeatureVisualProps> = ({
   index,
   imageOnRight,
+  assetsReady,
 }) => {
   const visualRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(visualRef, { amount: 0.45 });
+  const shouldAnimate = isInView && assetsReady;
 
   return (
     <div
@@ -163,26 +218,28 @@ const AuraFeatureVisual: React.FC<AuraFeatureVisualProps> = ({
               ? `${auraAgentsBackground768} 768w, ${auraAgentsBackground1440} 1440w, ${auraAgentsBackground1672} 1672w`
               : `${auraFeaturesBackground768} 768w, ${auraFeaturesBackground1440} 1440w, ${auraFeaturesBackground2160} 2160w`
         }
-        sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 82vw, 1088px"
+        sizes={featureCardImageSizes}
         alt=""
         width={index > 0 ? "1674" : "2936"}
         height={index > 0 ? "909" : "1748"}
-        loading="lazy"
+        loading="eager"
+        fetchPriority="low"
         decoding="async"
         className="block size-full object-cover"
       />
 
-      {isInView && index === 0 ? (
+      {shouldAnimate && index === 0 ? (
         <div className="absolute inset-0" aria-label="Aura working over a travel website">
           <div className="absolute top-[22%] right-0 w-[85%] overflow-hidden rounded-tl-[clamp(6px,0.8vw,12px)] shadow-[0_12px_24px_rgba(31,19,62,0.2)]">
             <img
               src={showcaseBrowser1440}
               srcSet={`${showcaseBrowser768} 768w, ${showcaseBrowser1440} 1440w, ${showcaseBrowser2160} 2160w`}
-              sizes="(max-width: 767px) 72vw, 68vw"
+              sizes={showcaseBrowserSizes}
               alt="A travel website for Sanur Beach open underneath Aura"
               width="2480"
               height="1368"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="low"
               decoding="async"
               className="block h-auto w-full"
             />
@@ -192,14 +249,28 @@ const AuraFeatureVisual: React.FC<AuraFeatureVisualProps> = ({
         </div>
       ) : null}
 
-      {isInView && index === 1 ? <DictationShowcase /> : null}
+      {shouldAnimate && index === 1 ? <DictationShowcase /> : null}
 
-      {isInView && index === 2 ? <AuraParallelAgentsShowcase forceMotion /> : null}
+      {shouldAnimate && index === 2 ? <AuraParallelAgentsShowcase forceMotion /> : null}
     </div>
   );
 };
 
 const AuraFeatureCards: React.FC = () => {
+  const [assetsReady, setAssetsReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    Promise.all(featureAssets.map(preloadResponsiveImage)).then(() => {
+      if (!cancelled) setAssetsReady(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <section
       className="w-full bg-white px-[20px] pb-[120px] md:px-[48px] md:pb-[160px] lg:px-[80px] lg:pb-[192px]"
@@ -217,6 +288,7 @@ const AuraFeatureCards: React.FC = () => {
             <AuraFeatureVisual
               index={index}
               imageOnRight={feature.imageOnRight}
+              assetsReady={assetsReady}
             />
 
             <div

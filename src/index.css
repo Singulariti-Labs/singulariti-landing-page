@@ -256,12 +256,12 @@
 
   .aura-dictation-transcript--listening .aura-dictation-transcript__word {
     animation: aura-speech-word-in 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: calc(var(--dictation-word-index) * 140ms + 220ms);
+    animation-delay: calc(var(--dictation-word-index) * 120ms + 220ms);
   }
 
   .aura-dictation-transcript--listening .aura-dictation-transcript__word--issue {
     animation:
-      aura-speech-word-in 320ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--dictation-word-index) * 140ms + 220ms) forwards,
+      aura-speech-word-in 320ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--dictation-word-index) * 120ms + 220ms) forwards,
       aura-dictation-issue-dissolve 1050ms ease-in-out var(--dictation-cleanup-start) forwards,
       aura-dictation-issue-collapse 620ms cubic-bezier(0.4, 0, 0.2, 1) var(--dictation-collapse-start) forwards;
   }

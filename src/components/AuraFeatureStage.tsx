@@ -28,7 +28,8 @@ const AuraFeatureStage: React.FC = () => {
           alt=""
           width="4324"
           height="2380"
-          loading="lazy"
+          loading="eager"
+          fetchPriority="low"
           decoding="async"
         />
       </div>

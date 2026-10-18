@@ -31,7 +31,7 @@ const dictationWords = dictationSegments.flatMap((segment) =>
   segment.text.split(" ").map((word) => ({ word, color: segment.color })),
 );
 
-const DICTATION_WORD_DELAY_MS = 140;
+const DICTATION_WORD_DELAY_MS = 120;
 const DICTATION_WORD_ENTRANCE_DELAY_MS = 220;
 const DICTATION_WORD_ENTRANCE_DURATION_MS = 320;
 
