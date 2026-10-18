@@ -9,7 +9,7 @@ const NotifyMePage: React.FC = () => {
 
     return (
         <div className="flex flex-col h-screen bg-[#F0EEE6] relative overflow-hidden">
-            {/* Background Logo - Exact same position as in get_your_aura.tsx */}
+            {/* Background Logo - Exact same position as on the Aura page */}
             <div
                 className="absolute pointer-events-none z-0 opacity-10"
                 style={{
@@ -28,7 +28,7 @@ const NotifyMePage: React.FC = () => {
                 animate={{ opacity: 1 }}
                 className="relative z-20 flex flex-col h-full w-full"
             >
-                <NotifyMeForm onClose={() => navigate('/get-your-aura')} />
+                <NotifyMeForm onClose={() => navigate('/aura')} />
             </motion.div>
         </div>
     );

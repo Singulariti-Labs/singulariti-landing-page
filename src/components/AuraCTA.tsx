@@ -31,7 +31,7 @@ const AuraCTA: React.FC = () => (
       </h2>
 
       <Link
-        to="/get-your-aura"
+        to="/aura"
         className="mt-10 inline-flex min-h-13 items-center justify-center gap-2 rounded-[10px] bg-white px-7 font-inter text-base font-semibold text-[#141413] transition-colors duration-200 hover:bg-[#eee7f7] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:mt-12"
         aria-label="Get Aura for Windows"
       >

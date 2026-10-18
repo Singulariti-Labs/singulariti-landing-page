@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
 
   const handleJoinWaitlistClick = () => {
     setIsMenuOpen(false);
-    navigate("/get-your-aura");
+    navigate("/aura");
   };
 
   return (

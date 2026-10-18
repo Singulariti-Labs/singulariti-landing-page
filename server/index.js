@@ -41,6 +41,11 @@ const __dirname = path.dirname(__filename);
 // Serve static assets from Vite build
 app.use(express.static(path.join(__dirname, "../dist")));
 
+// Preserve existing links and transfer search ranking signals to the canonical Aura URL.
+app.get("/get-your-aura", (req, res) => {
+  res.redirect(301, "/aura");
+});
+
 // Catch-all route -> send React app
 app.get(/^(?!\/api).*/, (req, res) => {
   res.sendFile(path.join(__dirname, "../dist", "index.html"));

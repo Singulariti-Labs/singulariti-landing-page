@@ -35,7 +35,7 @@ const AuraCard: React.FC<{ interactive?: boolean }> = ({ interactive = true }) =
           Aura is a proactive personal assistant that wraps your entire operating system with an agentic layer, making your device voice-first and letting you use your personal assistant anywhere, with any application.
         </p>
         <Link
-          to="/get-your-aura"
+          to="/aura"
           tabIndex={interactive ? 0 : -1}
           className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-[10px] border border-transparent bg-[#141413] px-6 font-inter text-sm font-medium text-white transition-colors duration-200 hover:border-[#141413] hover:bg-white hover:text-[#141413] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7a3220] sm:mt-9"
           aria-label="Explore Aura personal AI"

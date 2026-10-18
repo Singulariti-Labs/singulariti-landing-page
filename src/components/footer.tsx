@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
               <ul className="flex flex-col gap-4">
                 <li>
                   <button
-                    onClick={() => handleLinkClick("/get-your-aura")}
+                    onClick={() => handleLinkClick("/aura")}
                     className="font-inter text-small text-[14px] text-white/60 hover:text-white transition-all duration-300 text-left"
                   >
                     Aura

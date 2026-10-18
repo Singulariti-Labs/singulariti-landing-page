@@ -94,7 +94,7 @@ const AuraIntro: React.FC = () => {
               </motion.p>
               <motion.button
                 ref={buttonRef}
-                onClick={() => navigate('/get-your-aura')}
+                onClick={() => navigate('/aura')}
                 className="bg-[#E5E3DB] text-[#141413] px-10 py-1.5 rounded-[5px] font-inter font-medium text-[17px] transition-colors hover:bg-white relative top-8"
               >
                 Explore

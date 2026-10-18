@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import HeroSection from './components/hero';
 import Navbar from './components/navbar';
 import Section2 from './components/section2';
@@ -27,7 +27,7 @@ function App() {
         </header>
       )}
 
-      <main className={['/', '/get-your-aura'].includes(location.pathname) ? 'w-full flex-grow' : 'content-container flex-grow'}>
+      <main className={['/', '/aura'].includes(location.pathname) ? 'w-full flex-grow' : 'content-container flex-grow'}>
         <Routes>
           {/* Home page */}
           <Route
@@ -55,7 +55,8 @@ function App() {
           <Route path="/join-waitlist" element={<JoinWaitlist />} />
           <Route path="/singulariti-road-map" element={<RoadMap />} />
           <Route path="/about" element={<About />} />
-          <Route path="/get-your-aura" element={<GetYourAuraPage />} />
+          <Route path="/aura" element={<GetYourAuraPage />} />
+          <Route path="/get-your-aura" element={<Navigate to="/aura" replace />} />
           <Route path="/notify-me" element={<NotifyMePage />} />
         </Routes>
       </main>
