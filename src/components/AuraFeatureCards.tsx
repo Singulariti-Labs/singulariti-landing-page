@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 import auraAgentsBackground from "../assets/aura_agents_background.png";
 import auraDictationBackground from "../assets/aura_dictation_background.png";
 import auraFeaturesBackground from "../assets/aura_features_bg.png";
@@ -115,6 +116,58 @@ const features = [
   },
 ];
 
+type AuraFeatureVisualProps = {
+  index: number;
+  imageOnRight: boolean;
+};
+
+const AuraFeatureVisual: React.FC<AuraFeatureVisualProps> = ({
+  index,
+  imageOnRight,
+}) => {
+  const visualRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(visualRef, { amount: 0.45 });
+
+  return (
+    <div
+      ref={visualRef}
+      className={`@container relative aspect-[5/3] w-full overflow-hidden rounded-[12px] bg-[#DCD5FF] shadow-[0_5px_5px_rgba(45,27,86,0.16)] ${imageOnRight ? "md:order-2" : ""}`}
+    >
+      <img
+        src={index === 1 ? auraDictationBackground : index === 2 ? auraAgentsBackground : auraFeaturesBackground}
+        alt=""
+        width={index > 0 ? "1674" : "2936"}
+        height={index > 0 ? "909" : "1748"}
+        loading="lazy"
+        decoding="async"
+        className="block size-full object-cover"
+      />
+
+      {isInView && index === 0 ? (
+        <div className="absolute inset-0" aria-label="Aura working over a travel website">
+          <div className="absolute top-[22%] right-0 w-[85%] overflow-hidden rounded-tl-[clamp(6px,0.8vw,12px)] shadow-[0_12px_24px_rgba(31,19,62,0.2)]">
+            <img
+              src={showcaseBrowser}
+              alt="A travel website for Sanur Beach open underneath Aura"
+              width="2480"
+              height="1368"
+              loading="lazy"
+              decoding="async"
+              className="block h-auto w-full"
+            />
+            <AuraSpeechCaption />
+          </div>
+          <AuraDynamicIsland state="listening" />
+        </div>
+      ) : null}
+
+      {isInView && index === 1 ? <DictationShowcase /> : null}
+
+      {isInView && index === 2 ? <AuraParallelAgentsShowcase /> : null}
+    </div>
+  );
+};
+
 const AuraFeatureCards: React.FC = () => {
   return (
     <section
@@ -130,42 +183,10 @@ const AuraFeatureCards: React.FC = () => {
               : "md:grid-cols-[minmax(0,62fr)_minmax(0,38fr)] lg:grid-cols-[minmax(0,68fr)_minmax(0,32fr)]"
               }`}
           >
-            <div
-              className={`@container relative aspect-[5/3] w-full overflow-hidden rounded-[12px] bg-[#DCD5FF] shadow-[0_5px_5px_rgba(45,27,86,0.16)] ${feature.imageOnRight ? "md:order-2" : ""
-                }`}
-            >
-              <img
-                src={index === 1 ? auraDictationBackground : index === 2 ? auraAgentsBackground : auraFeaturesBackground}
-                alt=""
-                width={index > 0 ? "1674" : "2936"}
-                height={index > 0 ? "909" : "1748"}
-                loading="lazy"
-                decoding="async"
-                className="block size-full object-cover"
-              />
-
-              {index === 0 ? (
-                <div className="absolute inset-0" aria-label="Aura working over a travel website">
-                  <div className="absolute top-[22%] right-0 w-[85%] overflow-hidden rounded-tl-[clamp(6px,0.8vw,12px)] shadow-[0_12px_24px_rgba(31,19,62,0.2)]">
-                    <img
-                      src={showcaseBrowser}
-                      alt="A travel website for Sanur Beach open underneath Aura"
-                      width="2480"
-                      height="1368"
-                      loading="lazy"
-                      decoding="async"
-                      className="block h-auto w-full"
-                    />
-                    <AuraSpeechCaption />
-                  </div>
-                  <AuraDynamicIsland state="listening" />
-                </div>
-              ) : null}
-
-              {index === 1 ? <DictationShowcase /> : null}
-
-              {index === 2 ? <AuraParallelAgentsShowcase /> : null}
-            </div>
+            <AuraFeatureVisual
+              index={index}
+              imageOnRight={feature.imageOnRight}
+            />
 
             <div
               className={`w-full max-w-[400px] md:mb-[20px] ${feature.imageOnRight ? "md:order-1 md:justify-self-start" : "md:justify-self-end"
