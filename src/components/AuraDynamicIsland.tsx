@@ -15,6 +15,7 @@ type AuraDynamicIslandProps = {
   label?: string;
   onCancel?: () => void;
   onConfirm?: () => void;
+  forceMotion?: boolean;
 };
 
 const stateLabels: Record<AuraDynamicIslandState, string> = {
@@ -60,9 +61,11 @@ const AuraDynamicIsland: React.FC<AuraDynamicIslandProps> = ({
   label = stateLabels[state],
   onCancel,
   onConfirm,
+  forceMotion = false,
 }) => {
   const shellClipId = useId().replace(/:/g, "");
-  const shouldReduceMotion = useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
+  const shouldReduceMotion = !forceMotion && Boolean(prefersReducedMotion);
   const flowDuration = state === "thinking" ? 9.5 : 7.2;
   const isProcessing = state === "processing";
   const isPolishing = state === "polishing";

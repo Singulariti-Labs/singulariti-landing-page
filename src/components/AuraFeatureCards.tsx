@@ -90,7 +90,10 @@ const DictationShowcase: React.FC = () => {
       </div>
     </div>
 
-      <AuraDynamicIsland state={phase === "polishing" ? "polishing" : "listening"} />
+      <AuraDynamicIsland
+        state={phase === "polishing" ? "polishing" : "listening"}
+        forceMotion
+      />
     </div>
   );
 };
@@ -157,13 +160,13 @@ const AuraFeatureVisual: React.FC<AuraFeatureVisualProps> = ({
             />
             <AuraSpeechCaption />
           </div>
-          <AuraDynamicIsland state="listening" />
+          <AuraDynamicIsland state="listening" forceMotion />
         </div>
       ) : null}
 
       {isInView && index === 1 ? <DictationShowcase /> : null}
 
-      {isInView && index === 2 ? <AuraParallelAgentsShowcase /> : null}
+      {isInView && index === 2 ? <AuraParallelAgentsShowcase forceMotion /> : null}
     </div>
   );
 };

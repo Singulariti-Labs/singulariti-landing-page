@@ -30,6 +30,10 @@ const promptSpeechDuration =
 
 type ShowcasePhase = "speaking" | "holding" | "running" | "paused";
 
+type AuraParallelAgentsShowcaseProps = {
+  forceMotion?: boolean;
+};
+
 type AuraAgentTaskCardProps = {
   prompt: string;
   steps: readonly string[];
@@ -193,8 +197,11 @@ const AuraAgentTaskCard: React.FC<AuraAgentTaskCardProps> = ({
   );
 };
 
-const AuraParallelAgentsShowcase: React.FC = () => {
-  const reduceMotion = useReducedMotion();
+const AuraParallelAgentsShowcase: React.FC<AuraParallelAgentsShowcaseProps> = ({
+  forceMotion = false,
+}) => {
+  const prefersReducedMotion = useReducedMotion();
+  const reduceMotion = forceMotion ? false : Boolean(prefersReducedMotion);
   const [phase, setPhase] = useState<ShowcasePhase>(
     reduceMotion ? "running" : "speaking",
   );
@@ -244,7 +251,7 @@ const AuraParallelAgentsShowcase: React.FC = () => {
       className="absolute inset-0"
       aria-label="Aura running multiple agents simultaneously"
     >
-      <AuraDynamicIsland state={islandState} />
+      <AuraDynamicIsland state={islandState} forceMotion={forceMotion} />
 
       <div className="absolute bottom-[12%] left-1/2 z-10 w-[68%] -translate-x-1/2">
         <AnimatePresence initial={false} mode="wait">
