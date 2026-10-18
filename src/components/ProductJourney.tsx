@@ -111,7 +111,7 @@ const HardwareCard: React.FC = () => (
     <div className="product-card-hardware-surface relative z-10 isolate flex h-full flex-col overflow-hidden bg-white/10 px-4 pb-0 pt-6 sm:px-10 sm:pt-10 md:px-12 md:pt-10 lg:px-14">
       <h3 className="product-card-hardware-title relative z-10 -translate-y-6 font-darker text-[88px] font-normal leading-[0.78] tracking-[-0.065em] text-[#141413] sm:-translate-y-12 sm:text-[160px]">Hardware</h3>
       <p className="product-card-hardware-copy relative z-10 mt-3 max-w-[38ch] font-darker text-[16px] font-medium leading-[1.15] tracking-[-0.025em] text-[#141413] sm:absolute sm:left-[43%] sm:top-[140px] sm:ml-0 sm:mt-0 sm:translate-x-8 sm:translate-y-0 sm:text-[clamp(1.1rem,2vw,1.75rem)] lg:-translate-y-6 lg:translate-x-18">
-        Hardware makes the personal assistant accessable everywhere, makes it a part of your every moment which is always with you everywhere you go
+        Hardware makes the personal assistant accessible everywhere, making it part of every moment and always available wherever you go.
       </p>
       <p className="product-card-hardware-coming pointer-events-none absolute inset-x-0 z-0 translate-y-36 select-none whitespace-nowrap pr-5 text-right font-dm-sans text-[84px] font-normal leading-[0.82] tracking-[-0.065em] text-[#141413]/[8%] sm:bottom-2 sm:translate-x-4 sm:translate-y-0 sm:pr-0 sm:text-left sm:text-[112px] sm:leading-none lg:bottom-auto lg:translate-x-20 lg:translate-y-80 lg:text-[160px]">
         <span className="block sm:inline">Coming</span>{" "}

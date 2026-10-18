@@ -83,7 +83,7 @@ const RoadMap: React.FC = () => {
                 A2I Protocol
               </h2>
               <p className="!mt-2 font-medium text-xl lg:text-2xl text-black/50 !drop-shadow-xl">
-                Agent, App Iteraction Protocol
+                Agent-App Interaction Protocol
               </p>
               <button className="!mt-8 !px-6 !py-2 bg-black/50 text-white rounded-full transition w-fit">
                 Explore
@@ -116,7 +116,7 @@ const RoadMap: React.FC = () => {
                 OSI-1
               </h2>
               <p className="!mt-2 font-medium text-xl lg:text-2xl text-black/50 !drop-shadow-xl">
-                Operating Super Intelligence - AI powred Operating System
+                Operating Super Intelligence — AI-Powered Operating System
               </p>
               <button className="!mt-8 !px-6 !py-2 bg-black/50 text-white rounded-full transition w-fit">
                 Explore
@@ -145,10 +145,10 @@ const RoadMap: React.FC = () => {
             {/* Right side: Content – with text shadow */}
             <div className="!ml-10 lg:!ml-24 flex flex-col !-mt-[1.2rem] lg:!-mt-[2rem]">
               <h2 className="text-5xl lg:text-7xl font-medium text-black/50 leading-none [text-shadow:0px_3px_4px_rgba(0,0,0,0.25)]">
-                OSI-1 Powered Hardwares
+                OSI-1-Powered Hardware
               </h2>
               <p className="!mt-2 font-medium text-xl lg:text-2xl text-black/50 !drop-shadow-xl">
-                Hardwares/Warebles Prowered By OSI-1
+                Hardware/Wearables Powered by OSI-1
               </p>
               <button className="!mt-8 !px-6 !py-2 bg-black/50 text-white rounded-full transition w-fit">
                 Explore

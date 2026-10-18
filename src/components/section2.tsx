@@ -117,7 +117,7 @@ const Section2: React.FC = () => {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
           >
-            “ Everyone will have there own personal general assistant, as we have personal phones and computers today ”
+            “Everyone will have their own personal general assistant, just as we have personal phones and computers today.”
           </motion.p>
         </div>
       </div>
