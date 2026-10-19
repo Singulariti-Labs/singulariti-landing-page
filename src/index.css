@@ -190,6 +190,81 @@
     font-family: var(--font-darker);
   }
 
+  .aura-dynamic-island__flow {
+    opacity: 1;
+    transform: translateX(-25%);
+    transition: opacity 180ms ease-out;
+    will-change: transform;
+  }
+
+  .aura-dynamic-island__flow--animated {
+    animation: aura-dynamic-island-flow var(--aura-flow-duration) linear infinite;
+  }
+
+  .aura-dynamic-island__flow--static {
+    animation: none;
+  }
+
+  .aura-dynamic-island__flow--hidden {
+    animation: none;
+    opacity: 0;
+  }
+
+  .aura-dynamic-island__label {
+    background-position-x: 50%;
+  }
+
+  .aura-dynamic-island__label--animated {
+    animation: aura-dynamic-island-label-shimmer 3.4s ease-in-out infinite;
+  }
+
+  .aura-dynamic-island__label--static {
+    animation: none;
+  }
+
+  .aura-dynamic-island__processing-dot {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+
+  .aura-dynamic-island__processing-dot--animated {
+    animation: aura-dynamic-island-processing-dot 900ms ease-in-out var(--aura-animation-delay) infinite
+      both;
+  }
+
+  .aura-dynamic-island__processing-dot--static {
+    animation: none;
+  }
+
+  .aura-dynamic-island__wave-bar {
+    opacity: 0.92;
+    transform: scaleY(var(--aura-wave-static-scale));
+    will-change: transform, opacity;
+  }
+
+  .aura-dynamic-island__wave-bar--animated {
+    animation: aura-dynamic-island-wave-bar var(--aura-wave-duration) ease-in-out
+      var(--aura-animation-delay) infinite both;
+  }
+
+  .aura-dynamic-island__wave-bar--static {
+    animation: none;
+    will-change: auto;
+  }
+
+  .aura-dynamic-island__sparkle {
+    transform: rotate(0deg);
+    transform-origin: center;
+  }
+
+  .aura-dynamic-island__sparkle--animated {
+    animation: aura-dynamic-island-sparkle 1.5s linear infinite;
+  }
+
+  .aura-dynamic-island__sparkle--static {
+    animation: none;
+  }
+
   .aura-speech-caption {
     position: absolute;
     z-index: 10;
@@ -252,6 +327,12 @@
 
   .aura-dictation-transcript__word:last-child {
     margin-right: 0;
+  }
+
+  @media (max-width: 767px) {
+    .aura-dictation-transcript__word {
+      margin-right: 0.1em;
+    }
   }
 
   .aura-dictation-transcript--listening .aura-dictation-transcript__word {
@@ -345,6 +426,82 @@
 
   .aura-dictation-showcase:has(.aura-dictation-transcript--listening) .aura-dictation-mail-copy {
     animation: aura-dictation-mail-copy-in 800ms cubic-bezier(0.22, 1, 0.36, 1) var(--dictation-mail-copy-start) forwards;
+  }
+}
+
+@keyframes aura-dynamic-island-flow {
+  from {
+    transform: translateX(-40%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes aura-dynamic-island-label-shimmer {
+  from {
+    background-position-x: 160%;
+  }
+
+  to {
+    background-position-x: -160%;
+  }
+}
+
+@keyframes aura-dynamic-island-processing-dot {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes aura-dynamic-island-wave-bar {
+  0% {
+    opacity: var(--aura-wave-opacity-0);
+    transform: scaleY(var(--aura-wave-scale-0));
+  }
+
+  20% {
+    opacity: var(--aura-wave-opacity-1);
+    transform: scaleY(var(--aura-wave-scale-1));
+  }
+
+  40% {
+    opacity: var(--aura-wave-opacity-2);
+    transform: scaleY(var(--aura-wave-scale-2));
+  }
+
+  60% {
+    opacity: var(--aura-wave-opacity-3);
+    transform: scaleY(var(--aura-wave-scale-3));
+  }
+
+  80% {
+    opacity: var(--aura-wave-opacity-4);
+    transform: scaleY(var(--aura-wave-scale-4));
+  }
+
+  100% {
+    opacity: var(--aura-wave-opacity-5);
+    transform: scaleY(var(--aura-wave-scale-5));
+  }
+}
+
+@keyframes aura-dynamic-island-sparkle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  66.6667%,
+  100% {
+    transform: rotate(360deg);
   }
 }
 

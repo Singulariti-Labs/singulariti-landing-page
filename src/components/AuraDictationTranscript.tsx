@@ -53,7 +53,7 @@ const AuraDictationTranscript: React.FC<AuraDictationTranscriptProps> = ({
 }) => {
   return (
     <p
-      className={`aura-dictation-transcript absolute top-[clamp(68px,20%,98px)] left-[4%] z-10 m-0 w-[43%] font-['Inter',system-ui,sans-serif] text-[clamp(7px,1.7cqi,14px)] leading-[2.5] font-medium tracking-[-0.025em] text-[#111111]${isActive ? " aura-dictation-transcript--listening" : ""}`}
+      className={`aura-dictation-transcript absolute top-[clamp(68px,20%,98px)] left-[4%] z-10 m-0 w-[43%] font-['Inter',system-ui,sans-serif] text-[clamp(7px,1.7cqi,14px)] leading-[2.5] font-medium tracking-[-0.025em] text-[#111111] max-md:top-[52px] max-md:leading-[1.3]${isActive ? " aura-dictation-transcript--listening" : ""}`}
       aria-label={`Raw dictation: ${rawDictation} Formatted text: ${formattedDictation}`}
       aria-describedby="dictation-highlight-key"
     >

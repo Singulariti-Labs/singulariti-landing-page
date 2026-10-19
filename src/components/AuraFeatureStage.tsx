@@ -17,11 +17,11 @@ const AuraFeatureStage: React.FC = () => {
       </h2>
 
       <div
-        className="relative isolate aspect-[4/3] w-full overflow-hidden rounded-t-[12px] md:aspect-[16/10] lg:aspect-[2.15/1] lg:max-w-[1088px] lg:rounded-t-[clamp(12px,1.1vw,20px)]"
+        className="relative isolate aspect-[768/422] w-full overflow-hidden rounded-t-[12px] md:aspect-[16/10] lg:aspect-[2.15/1] lg:max-w-[1088px] lg:rounded-t-[clamp(12px,1.1vw,20px)]"
         aria-hidden="true"
       >
         <img
-          className="block size-full object-cover object-[54%_top] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_52%,rgb(0_0_0_/_88%)_62%,rgb(0_0_0_/_48%)_76%,rgb(0_0_0_/_12%)_90%,transparent_100%)] [mask-image:linear-gradient(to_bottom,#000_0%,#000_52%,rgb(0_0_0_/_88%)_62%,rgb(0_0_0_/_48%)_76%,rgb(0_0_0_/_12%)_90%,transparent_100%)] md:object-top"
+          className="block size-full object-contain object-top [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_52%,rgb(0_0_0_/_88%)_62%,rgb(0_0_0_/_48%)_76%,rgb(0_0_0_/_12%)_90%,transparent_100%)] [mask-image:linear-gradient(to_bottom,#000_0%,#000_52%,rgb(0_0_0_/_88%)_62%,rgb(0_0_0_/_48%)_76%,rgb(0_0_0_/_12%)_90%,transparent_100%)] md:object-cover md:object-top"
           src={auraProductImage1440}
           srcSet={`${auraProductImage768} 768w, ${auraProductImage1440} 1440w, ${auraProductImage2160} 2160w`}
           sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 82vw, 1088px"

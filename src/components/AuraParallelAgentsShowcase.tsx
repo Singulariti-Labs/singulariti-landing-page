@@ -144,7 +144,7 @@ const AuraAgentTaskCard: React.FC<AuraAgentTaskCardProps> = ({
 
   return (
     <motion.div
-      className="absolute right-[calc(3.5%+clamp(17.5px,3.65cqi,47px)+20px)] bottom-[22%] z-10 flex min-h-[40%] w-[55%] flex-col overflow-hidden rounded-[clamp(8px,1.6cqi,14px)] border border-white/10 bg-[#2D2D2D] p-[clamp(8px,1.5cqi,16px)] text-white shadow-[0_16px_32px_rgba(31,19,62,0.28)]"
+      className="absolute right-[calc(3.5%+clamp(17.5px,3.65cqi,47px)+20px)] bottom-[22%] z-10 flex min-h-[40%] w-[55%] flex-col overflow-hidden rounded-[clamp(8px,1.6cqi,14px)] border border-white/10 bg-[#2D2D2D] p-[clamp(8px,1.5cqi,16px)] text-white shadow-[0_16px_32px_rgba(31,19,62,0.28)] max-md:right-[calc(3.5%+clamp(12px,2.5cqi,22px)+10px)] max-md:bottom-[25%] max-md:min-h-[29%] max-md:w-[54%] max-md:rounded-[7px] max-md:p-[6px]"
       initial={reduceMotion ? false : { opacity: 0, x: -8, scale: 0.96 }}
       animate={{ opacity: 1, x: 0, scale: 1 }}
       exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -4, scale: 0.98 }}
@@ -155,9 +155,9 @@ const AuraAgentTaskCard: React.FC<AuraAgentTaskCardProps> = ({
       }
       aria-label={`Running agent task: ${prompt}`}
     >
-      <div className="flex items-center justify-between gap-2 font-['Inter',system-ui,sans-serif] text-[clamp(10px,2cqi,14px)] leading-none font-medium">
-        <span className="inline-flex items-center gap-[clamp(5px,0.8cqi,8px)]">
-          <span className="size-[clamp(8px,1cqi,11px)] rounded-full bg-[#EA174C] shadow-[0_0_6px_rgba(234,23,76,0.38)]" />
+      <div className="flex items-center justify-between gap-2 font-['Inter',system-ui,sans-serif] text-[clamp(10px,2cqi,14px)] leading-none font-medium max-md:gap-1 max-md:text-[7px]">
+        <span className="inline-flex items-center gap-[clamp(5px,0.8cqi,8px)] max-md:gap-[4px]">
+          <span className="size-[clamp(8px,1cqi,11px)] rounded-full bg-[#EA174C] shadow-[0_0_6px_rgba(234,23,76,0.38)] max-md:size-[6px]" />
           <ShimmerText
             className="text-white"
             duration={1}
@@ -169,14 +169,14 @@ const AuraAgentTaskCard: React.FC<AuraAgentTaskCardProps> = ({
             Running
           </ShimmerText>
         </span>
-        <X className="size-[clamp(9px,1.35cqi,14px)] text-white/55" aria-hidden="true" />
+        <X className="size-[clamp(9px,1.35cqi,14px)] text-white/55 max-md:size-[8px]" aria-hidden="true" />
       </div>
 
-      <p className="mt-[clamp(7px,1.2cqi,12px)] mb-0 max-w-[95%] font-['DM_Sans',system-ui,sans-serif] text-[clamp(10px,2cqi,18px)] leading-[1.45] font-medium tracking-[-0.025em] text-white/90">
+      <p className="mt-[clamp(7px,1.2cqi,12px)] mb-0 max-w-[95%] font-['DM_Sans',system-ui,sans-serif] text-[clamp(10px,2cqi,18px)] leading-[1.45] font-medium tracking-[-0.025em] text-white/90 max-md:mt-[4px] max-md:text-[7px] max-md:leading-[1.3]">
         {prompt}
       </p>
 
-      <div className="mt-[clamp(6px,1cqi,10px)] min-h-[clamp(20px,4cqi,36px)] font-['Inter',system-ui,sans-serif] text-[clamp(10px,1.5cqi,14px)] leading-[1.35]">
+      <div className="mt-[clamp(6px,1cqi,10px)] min-h-[clamp(20px,4cqi,36px)] font-['Inter',system-ui,sans-serif] text-[clamp(10px,1.5cqi,14px)] leading-[1.35] max-md:mt-[3px] max-md:min-h-[13px] max-md:text-[6px] max-md:leading-[1.2]">
         <ShimmerText
           key={currentStep}
           className="block text-white/50"
@@ -189,8 +189,8 @@ const AuraAgentTaskCard: React.FC<AuraAgentTaskCardProps> = ({
         </ShimmerText>
       </div>
 
-      <div className="mt-auto inline-flex min-h-[clamp(20px,3.2cqi,28px)] w-[38%] min-w-[84px] items-center gap-[clamp(5px,0.8cqi,8px)] rounded-[clamp(4px,0.7cqi,7px)] bg-[linear-gradient(to_bottom_left,rgba(255,38,38,0.6),#552D2D)] px-[clamp(8px,1.2cqi,12px)] font-['Inter',system-ui,sans-serif] text-[clamp(10px,1.5cqi,14px)] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-        <span className="size-[clamp(7px,1cqi,10px)] shrink-0 rounded-[1px] bg-white" aria-hidden="true" />
+      <div className="mt-auto inline-flex min-h-[clamp(20px,3.2cqi,28px)] w-[38%] min-w-[84px] items-center gap-[clamp(5px,0.8cqi,8px)] rounded-[clamp(4px,0.7cqi,7px)] bg-[linear-gradient(to_bottom_left,rgba(255,38,38,0.6),#552D2D)] px-[clamp(8px,1.2cqi,12px)] font-['Inter',system-ui,sans-serif] text-[clamp(10px,1.5cqi,14px)] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] max-md:min-h-[15px] max-md:w-[39%] max-md:min-w-[60px] max-md:gap-[3px] max-md:rounded-[4px] max-md:px-[5px] max-md:text-[7px]">
+        <span className="size-[clamp(7px,1cqi,10px)] shrink-0 rounded-[1px] bg-white max-md:size-[5px]" aria-hidden="true" />
         <span className="whitespace-nowrap">Cancel Task</span>
       </div>
     </motion.div>
@@ -297,7 +297,7 @@ const AuraParallelAgentsShowcase: React.FC<AuraParallelAgentsShowcaseProps> = ({
       </AnimatePresence>
 
       <motion.div
-        className="absolute top-[38%] right-[3.5%] z-10 flex -translate-y-1/2 flex-col items-end gap-[16px]"
+        className="absolute top-[38%] right-[3.5%] z-10 flex -translate-y-1/2 flex-col items-end gap-[16px] max-md:gap-[8px]"
         aria-hidden="true"
       >
         <AnimatePresence initial={false}>

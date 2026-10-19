@@ -18,6 +18,25 @@ type AuraDynamicIslandProps = {
   forceMotion?: boolean;
 };
 
+type IslandAnimationStyle = React.CSSProperties & {
+  "--aura-flow-duration"?: string;
+  "--aura-animation-delay"?: string;
+  "--aura-wave-duration"?: string;
+  "--aura-wave-static-scale"?: number;
+  "--aura-wave-scale-0"?: number;
+  "--aura-wave-scale-1"?: number;
+  "--aura-wave-scale-2"?: number;
+  "--aura-wave-scale-3"?: number;
+  "--aura-wave-scale-4"?: number;
+  "--aura-wave-scale-5"?: number;
+  "--aura-wave-opacity-0"?: number;
+  "--aura-wave-opacity-1"?: number;
+  "--aura-wave-opacity-2"?: number;
+  "--aura-wave-opacity-3"?: number;
+  "--aura-wave-opacity-4"?: number;
+  "--aura-wave-opacity-5"?: number;
+};
+
 const stateLabels: Record<AuraDynamicIslandState, string> = {
   listening: "Listening",
   polishing: "Polishing Text",
@@ -44,12 +63,29 @@ const speechActivityPatterns = [
 
 const waveformMotion = waveformBars.map((height, index) => {
   const pattern = speechActivityPatterns[(index * 3) % speechActivityPatterns.length];
+  const scaleY = pattern.map((activity) => Math.max(0.16, height * activity));
+  const opacity = pattern.map((activity) => 0.46 + activity * 0.5);
+  const duration = 1.5 + ((index * 7) % 6) * 0.1;
+  const delay = index * 0.04;
 
   return {
-    scaleY: pattern.map((activity) => Math.max(0.16, height * activity)),
-    opacity: pattern.map((activity) => 0.46 + activity * 0.5),
-    duration: 1.5 + ((index * 7) % 6) * 0.1,
-    delay: index * 0.04,
+    style: {
+      "--aura-wave-duration": `${duration}s`,
+      "--aura-animation-delay": `${delay}s`,
+      "--aura-wave-static-scale": height,
+      "--aura-wave-scale-0": scaleY[0],
+      "--aura-wave-scale-1": scaleY[1],
+      "--aura-wave-scale-2": scaleY[2],
+      "--aura-wave-scale-3": scaleY[3],
+      "--aura-wave-scale-4": scaleY[4],
+      "--aura-wave-scale-5": scaleY[5],
+      "--aura-wave-opacity-0": opacity[0],
+      "--aura-wave-opacity-1": opacity[1],
+      "--aura-wave-opacity-2": opacity[2],
+      "--aura-wave-opacity-3": opacity[3],
+      "--aura-wave-opacity-4": opacity[4],
+      "--aura-wave-opacity-5": opacity[5],
+    } satisfies IslandAnimationStyle,
   };
 });
 
@@ -153,29 +189,17 @@ const AuraDynamicIsland: React.FC<AuraDynamicIslandProps> = ({
       >
         <span className="absolute top-[-158%] left-1/2 h-[90px] w-[200px] -translate-x-1/2 rounded-[40%] bg-black blur-[40px] shadow-[0_0_12px_9px_rgba(0,0,0,0.34),0_0_28px_20px_rgba(0,0,0,0.18)]" />
         {/* <span className="absolute top-[-134%] left-1/2 h-[180%] w-[90%] -translate-x-1/2 rounded-[50%] bg-black/80 blur-[10px] shadow-[0_0_10px_7px_rgba(0,0,0,0.48)]" /> */}
-        <motion.svg
-          className="absolute bottom-[-5%] left-0 h-[64%] w-[200%] overflow-visible"
+        <svg
+          className={`aura-dynamic-island__flow absolute bottom-[-5%] left-0 h-[64%] w-[200%] overflow-visible ${
+            isMinimized
+              ? "aura-dynamic-island__flow--hidden"
+              : shouldReduceMotion || state === "complete"
+                ? "aura-dynamic-island__flow--static"
+                : "aura-dynamic-island__flow--animated"
+          }`}
+          style={{ "--aura-flow-duration": `${flowDuration}s` } as IslandAnimationStyle}
           viewBox="0 0 1200 80"
           preserveAspectRatio="none"
-          initial={false}
-          animate={
-            isMinimized
-              ? { x: "-25%", opacity: 0 }
-              : shouldReduceMotion || state === "complete"
-                ? { x: "-25%", opacity: 1 }
-                : { x: ["-40%", "0%"], opacity: 1 }
-          }
-          transition={{
-            x: {
-              duration: isMinimized ? 0 : flowDuration,
-              ease: "linear",
-              repeat:
-                shouldReduceMotion || state === "complete" || isMinimized
-                  ? 0
-                  : Infinity,
-            },
-            opacity: { duration: shouldReduceMotion ? 0 : 0.18, ease: "easeOut" },
-          }}
         >
           <path
             className={`origin-bottom scale-y-[1.22] [stroke-linejoin:round] [stroke-width:16px] blur-[20px] ${
@@ -188,7 +212,7 @@ const AuraDynamicIsland: React.FC<AuraDynamicIslandProps> = ({
             d={flowPath}
           />
           {/* <path className="fill-[#E43235]/75 blur-[2px]" d={flowPath} /> */}
-        </motion.svg>
+        </svg>
       </motion.span>
 
       <AnimatePresence initial={false} mode="wait">
@@ -202,8 +226,12 @@ const AuraDynamicIsland: React.FC<AuraDynamicIslandProps> = ({
             transition={{ duration: shouldReduceMotion ? 0 : 0.18, ease: "easeOut" }}
           >
             {hasEdgeControls ? cancelControl : null}
-            <motion.span
-              className="shrink-0 bg-clip-text font-['Inter',system-ui,sans-serif] text-[clamp(8px,0.9vw,12px)] leading-[1.2] font-normal tracking-[-0.025em] text-transparent text-shadow-[0_1px_5px_rgba(0,0,0,0.16)]"
+            <span
+              className={`aura-dynamic-island__label shrink-0 bg-clip-text font-['Inter',system-ui,sans-serif] text-[clamp(8px,0.9vw,12px)] leading-[1.2] font-normal tracking-[-0.025em] text-transparent text-shadow-[0_1px_5px_rgba(0,0,0,0.16)] ${
+                shouldReduceMotion || !hasLabelShimmer
+                  ? "aura-dynamic-island__label--static"
+                  : "aura-dynamic-island__label--animated"
+              }`}
               style={{
                 backgroundImage:
                   "linear-gradient(110deg, #ffffff 0%, #ffffff 38%, #B3ACA1 50%, #ffffff 62%, #ffffff 100%)",
@@ -211,21 +239,9 @@ const AuraDynamicIsland: React.FC<AuraDynamicIslandProps> = ({
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              initial={false}
-              animate={
-                shouldReduceMotion || !hasLabelShimmer
-                  ? { backgroundPositionX: "50%" }
-                  : { backgroundPositionX: ["160%", "-160%"] }
-              }
-              transition={{
-                duration: 3.4,
-                ease: "easeInOut",
-                repeat:
-                  shouldReduceMotion || !hasLabelShimmer ? 0 : Infinity,
-              }}
             >
               {label}
-            </motion.span>
+            </span>
 
             {isProcessing ? (
               <span
@@ -233,21 +249,16 @@ const AuraDynamicIsland: React.FC<AuraDynamicIslandProps> = ({
                 aria-hidden="true"
               >
                 {Array.from({ length: 5 }, (_, dotIndex) => (
-                  <motion.span
+                  <span
                     key={dotIndex}
-                    className="size-[clamp(2px,0.25vw,3.5px)] shrink-0 rounded-full bg-current"
-                    initial={false}
-                    animate={
+                    className={`aura-dynamic-island__processing-dot size-[clamp(2px,0.25vw,3.5px)] shrink-0 rounded-full bg-current ${
                       shouldReduceMotion
-                        ? { opacity: 0.9, y: 0 }
-                        : { opacity: [0.38, 1, 0.38], y: [0, -2, 0] }
-                    }
-                    transition={{
-                      duration: 0.9,
-                      ease: "easeInOut",
-                      repeat: shouldReduceMotion ? 0 : Infinity,
-                      delay: dotIndex * 0.1,
-                    }}
+                        ? "aura-dynamic-island__processing-dot--static"
+                        : "aura-dynamic-island__processing-dot--animated"
+                    }`}
+                    style={{
+                      "--aura-animation-delay": `${dotIndex * 0.1}s`,
+                    } as IslandAnimationStyle}
                   />
                 ))}
               </span>
@@ -256,47 +267,34 @@ const AuraDynamicIsland: React.FC<AuraDynamicIslandProps> = ({
                 className="flex h-[52%] min-w-0 flex-1 items-center justify-end gap-[clamp(1px,0.08vw,1.2px)]"
                 aria-hidden="true"
               >
-                {waveformBars.map((scale, index) => (
-                  <motion.span
-                    key={index}
-                    className="h-full w-[clamp(1.2px,0.12vw,1.8px)] shrink-0 origin-center rounded-full bg-current"
-                    initial={false}
-                    animate={
-                      shouldReduceMotion || state === "complete"
-                        ? { scaleY: scale, opacity: 0.92 }
-                        : {
-                          scaleY: waveformMotion[index].scaleY,
-                          opacity: waveformMotion[index].opacity,
-                        }
-                    }
-                    transition={{
-                      duration: waveformMotion[index].duration,
-                      ease: "easeInOut",
-                      repeat: shouldReduceMotion || state === "complete" ? 0 : Infinity,
-                      repeatType: "loop",
-                      delay: waveformMotion[index].delay,
-                    }}
-                  />
-                ))}
+                {waveformBars.map((_, index) => {
+                  const barMotion = waveformMotion[index];
+
+                  return (
+                    <span
+                      key={index}
+                      className={`aura-dynamic-island__wave-bar h-full w-[clamp(1.2px,0.12vw,1.8px)] shrink-0 origin-center rounded-full bg-current ${
+                        shouldReduceMotion || state === "complete"
+                          ? "aura-dynamic-island__wave-bar--static"
+                          : "aura-dynamic-island__wave-bar--animated"
+                      }`}
+                      style={barMotion.style}
+                    />
+                  );
+                })}
               </span>
             )}
             {isPolishing ? (
-              <motion.span
-                className="ml-auto grid size-[clamp(12px,1.25vw,17px)] shrink-0 place-items-center text-[#F0EEEE] [&>svg]:size-full [&>svg]:fill-[#F0EEEE] [&>svg]:stroke-[1.8]"
-                initial={false}
-                animate={
-                  shouldReduceMotion ? { rotate: 0 } : { rotate: [0, 360, 360] }
-                }
-                transition={{
-                  duration: 1.5,
-                  times: [0, 2 / 3, 1],
-                  ease: "linear",
-                  repeat: shouldReduceMotion ? 0 : Infinity,
-                }}
+              <span
+                className={`aura-dynamic-island__sparkle ml-auto grid size-[clamp(12px,1.25vw,17px)] shrink-0 place-items-center text-[#F0EEEE] [&>svg]:size-full [&>svg]:fill-[#F0EEEE] [&>svg]:stroke-[1.8] ${
+                  shouldReduceMotion
+                    ? "aura-dynamic-island__sparkle--static"
+                    : "aura-dynamic-island__sparkle--animated"
+                }`}
                 aria-hidden="true"
               >
                 <Sparkle />
-              </motion.span>
+              </span>
             ) : null}
             {hasEdgeControls ? confirmControl : null}
           </motion.span>
