@@ -283,7 +283,7 @@ const AuraVoicePricingSection: React.FC<AuraVoicePricingSectionProps> = ({
             {plans.map((plan) => {
               const effectiveMonthlyPrice =
                 billingCycle === "yearly"
-                  ? plan.monthlyPrice * 0.7
+                  ? Math.floor(plan.monthlyPrice * 0.7)
                   : plan.monthlyPrice;
 
               return (
